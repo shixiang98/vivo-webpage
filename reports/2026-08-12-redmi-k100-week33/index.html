@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>新品速递 · 发布会焦点周报 · week33</title>
+<style>
+:root{--bg:#f8f8f6;--card:#fff;--text:#18181a;--sub:#6b6b70;--border:#e4e4e8;--line:#ececf0;--brand:#FF4D1A;--up:#1a6e44;--up-bg:#e6f4ec;--down:#9a3520;--down-bg:#fceee9;--flat:#5a5a62;--flat-bg:#f0f0f3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.6}
+.tabs{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1.5px solid var(--border);display:flex;padding:0 28px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:14px 22px;border:none;background:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--sub);border-bottom:2.5px solid transparent;white-space:nowrap}
+.tab.active{color:var(--text);border-bottom-color:var(--brand);font-weight:700}
+.pane{display:none;max-width:1060px;margin:0 auto;padding:36px 24px 64px}
+.pane.active{display:block}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.kpi{background:var(--card);border-radius:12px;padding:18px 16px;border:1px solid var(--border);text-align:center}
+.kpi .num{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;color:var(--brand)}
+.kpi .desc{font-size:11px;color:var(--sub)}
+.hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.hl{background:var(--card);border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.hl .rank{font-size:28px;font-weight:800;margin-bottom:6px;color:var(--brand)}
+.hl h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.hl p{font-size:13px;color:var(--sub);line-height:1.5}
+.section-title{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.08em;text-transform:uppercase;margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.hero-card{background:var(--card);border-radius:14px;padding:22px 20px;border:1px solid var(--border)}
+.hero-card h3{font-size:15px;font-weight:700;margin-bottom:14px;color:var(--sub)}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;gap:8px}
+.spec-row:last-child{border:none}
+.spec-row .k{color:var(--sub);flex-shrink:0}
+.spec-row .v{font-weight:600;text-align:right;max-width:62%}
+.delta{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.delta.up{color:var(--up);background:var(--up-bg)}
+.delta.down{color:var(--down);background:var(--down-bg)}
+.delta.flat{color:var(--flat);background:var(--flat-bg)}
+.diff-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;font-size:13.5px}
+.diff-table th{background:#f3f3f5;padding:10px 14px;text-align:left;font-weight:700;color:var(--sub);font-size:12px}
+.diff-table td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:middle}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.ai-card{background:var(--card);border-radius:12px;padding:18px;border:1px solid var(--border)}
+.ai-card .label{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--sub);margin-bottom:8px}
+.ai-card p{font-size:13.5px;line-height:1.55}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid var(--border)}
+.swot-cell{padding:18px 16px;background:var(--card)}
+.swot-cell:nth-child(1){background:#e8f4ee}
+.swot-cell:nth-child(2){background:#fce9e6}
+.swot-cell:nth-child(3){background:#e8eeff}
+.swot-cell:nth-child(4){background:#fff8e6}
+.swot-cell h4{font-size:12px;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.swot-cell ul{list-style:none;padding:0}
+.swot-cell li{font-size:13px;padding:3px 0 3px 14px;position:relative;line-height:1.4}
+.swot-cell li::before{content:"▸";position:absolute;left:0;font-size:10px;top:5px}
+.rated{position:relative;cursor:help;border-bottom:1px dotted var(--border);display:inline-block}
+.rated .tip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(4px);width:240px;white-space:normal;word-break:break-all;background:#1d1d1f;color:#fff;font-size:12px;line-height:1.55;text-align:left;padding:10px 12px;border-radius:9px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;z-index:9999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.22);font-weight:400;letter-spacing:0}
+.rated .tip b{color:#ffd9a8;font-weight:600}
+.rated .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1d1d1f}
+.rated:hover .tip,.rated:focus .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.rated.tip-right .tip{left:0;transform:translateX(0) translateY(4px)}
+.rated.tip-right:hover .tip{transform:translateX(0) translateY(0)}
+.rated.tip-left .tip{left:auto;right:0;transform:translateX(0) translateY(4px)}
+.rated.tip-left:hover .tip{transform:translateX(0) translateY(0)}
+.stars{color:#f5a623;font-size:14px;letter-spacing:1px}
+.notice{background:#fffbee;border:1px solid #f5e07a;border-radius:10px;padding:14px 18px;font-size:13px;color:#5a4a00;margin-bottom:20px}
+.exposed-tag{display:inline-block;font-size:10px;font-weight:600;color:#9a6b00;background:#fff3d6;padding:1px 7px;border-radius:8px;margin-left:6px;vertical-align:middle}
+.hero-card.exposed h3{color:#9a6b00}
+details{margin-bottom:28px}
+summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--sub);padding:10px 0}
+.param-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-top:10px}
+.param-table td{padding:8px 14px;border-top:1px solid var(--line)}
+.param-table tr:first-child td{border:none}
+.param-table td:first-child{color:var(--sub);width:38%}
+.upgrade-list{background:var(--card);border-radius:12px;padding:18px 20px;border:1px solid var(--border);margin-bottom:28px}
+.upgrade-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.upgrade-item:last-child{border:none}
+.upgrade-item .badge{flex-shrink:0;width:28px;height:28px;border-radius:8px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.upgrade-item .body{flex:1}
+.upgrade-item .body h5{font-size:13.5px;font-weight:700;margin-bottom:3px}
+.upgrade-item .body p{font-size:12.5px;color:var(--sub);line-height:1.5}
+.chart-wrap{background:var(--card);border-radius:12px;padding:18px 20px;border:1px solid var(--border);margin-bottom:14px}
+.chart-wrap h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--sub)}
+.chart-canvas-wrap{position:relative;height:220px}
+.chart-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+.chart-table td{padding:6px 10px;border-top:1px solid var(--line)}
+.chart-table td:first-child{color:var(--sub)}
+.chart-table .delta-cell{text-align:right;font-weight:600}
+.report-cover{padding:36px 4px 28px;margin-bottom:32px;border-bottom:1px solid var(--line)}
+.report-cover .cover-brand{font-size:11px;font-weight:700;color:var(--sub);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.report-cover .cover-title{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--text);margin-bottom:16px}
+.report-cover .cover-meta{font-size:13px;color:var(--sub);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.report-cover .cover-sep{opacity:.4}
+.report-cover .cover-date{font-weight:600;color:var(--text)}
+@media(max-width:640px){.report-cover .cover-title{font-size:28px}.report-cover{padding:24px 2px 20px}}
+.event-banner{background:linear-gradient(135deg,var(--brand) 0%,#C73815 100%);border-radius:18px;padding:28px 30px;margin-bottom:28px;display:flex;gap:24px;align-items:center;color:#fff}
+.event-banner-text{flex:1 1 auto;min-width:0}
+.event-banner-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85;margin-bottom:10px}
+.event-banner-headline{font-size:22px;font-weight:800;line-height:1.32;letter-spacing:-.01em;margin-bottom:8px}
+.event-banner-sub{font-size:13.5px;opacity:.9;line-height:1.6}
+.event-banner-img{flex:0 0 260px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;min-height:150px;padding:10px}
+.event-banner-img img{max-width:100%;max-height:200px;object-fit:contain;border-radius:8px;display:block}
+.event-banner-img img[src=""]{display:none}
+.event-banner-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;text-align:center;opacity:.85;width:100%;min-height:130px}
+.event-banner-placeholder .icon{font-size:30px;opacity:.7}
+.event-banner-placeholder .hint{font-size:11px;opacity:.8;line-height:1.5}
+.event-banner-img img:not([src=""])+.event-banner-placeholder{display:none}
+@media(max-width:640px){.event-banner{flex-direction:column;padding:22px 20px}.event-banner-img{flex:none;width:100%}.event-banner-headline{font-size:20px}}
+.product-title{font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin:8px 0 18px;line-height:1.25}
+.product-img-wrap{margin-bottom:20px;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;padding:16px}
+.product-img-wrap img{max-width:100%;max-height:380px;object-fit:contain;border-radius:8px;display:block}
+.product-img-wrap img[src=""]{display:none}
+.product-img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--sub);font-size:13px;text-align:center;width:100%;min-height:180px}
+.product-img-placeholder .icon{font-size:36px;opacity:.35}
+.product-img-placeholder .hint{font-size:12px;color:var(--sub);opacity:.7;line-height:1.6}
+.product-img-wrap img:not([src=""])+.product-img-placeholder{display:none}
+.price-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;font-size:13.5px}
+.price-table th{background:#f3f3f5;padding:10px 14px;text-align:left;font-weight:700;color:var(--sub);font-size:12px}
+.price-table td{padding:10px 14px;border-top:1px solid var(--line)}
+.price-table .price-num{font-weight:700;color:var(--brand)}
+.nav-buttons{display:flex;justify-content:space-between;gap:12px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}
+.nav-btn{padding:10px 18px;background:var(--card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text);transition:all .15s}
+.nav-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:640px){.hero-grid,.kpi-row,.hl-grid,.ai-grid,.swot{grid-template-columns:1fr}.pane{padding:20px 16px 48px}.tabs{padding:0 12px}.chart-canvas-wrap{height:180px}}
+</style>
+</head>
+<body>
+<nav class="tabs">
+  <button class="tab active" data-tab="0" onclick="switchTab(0)">📋 总览</button>
+  <button class="tab" data-tab="1" onclick="switchTab(1)">📱 K100 Pro</button>
+  <button class="tab" data-tab="2" onclick="switchTab(2)">📱 K100 Pro Max</button>
+</nav>
+
+<!-- TAB 0 总览 -->
+<div class="pane active" id="pane0">
+  <div class="report-cover">
+    <div class="cover-brand">新品速递 · Product Flash</div>
+    <h1 class="cover-title">发布会焦点周报 · week33</h1>
+    <div class="cover-meta">
+      <span class="cover-date">2026-08-12</span>
+      <span class="cover-sep">·</span>
+      <span class="cover-count">本周纳入 2 款新品</span>
+      <span class="cover-sep">·</span>
+      <span class="cover-dept">硬件测试技术部</span>
+    </div>
+  </div>
+
+  <div class="event-banner">
+    <div class="event-banner-text">
+      <div class="event-banner-eyebrow">📍 本周发布会</div>
+      <h2 class="event-banner-headline">8月11日19:00，REDMI 在北京小米科技园举行 K100 Pro 系列新品发布会</h2>
+      <p class="event-banner-sub">一次性发布 K100 Pro、K100 Pro Max 两款满血旗舰，标准版缺席稍晚单独发布</p>
+    </div>
+    <div class="event-banner-img">
+      <img src="https://k.sinaimg.cn/n/spider20260811/239/w660h379/20260811/d1a7-27db172d449ca2785d59bda6d810c018.jpg/w700d1q75cms.jpg?by=cms_fixed_width" alt="发布会现场"/>
+      <div class="event-banner-placeholder">
+        <div class="icon">🎬</div>
+        <div>发布会图片待填入</div>
+        <div class="hint">打开此 HTML，找到 event-banner-img 里的<br>src="" 粘贴图片直链后保存刷新</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">2</div><div class="desc">本周新品数量</div></div>
+    <div class="kpi"><div class="num">¥3999</div><div class="desc">K100 Pro 起售价</div></div>
+    <div class="kpi"><div class="num">9070</div><div class="desc">Pro Max 电池容量 mAh</div></div>
+    <div class="kpi"><div class="num">185Hz</div><div class="desc">全系电竞高刷屏</div></div>
+  </div>
+
+  <div class="section-title">本周最大看点</div>
+  <div class="hl-grid">
+    <div class="hl"><div class="rank">01</div><h4>红米旗舰首次集体上探至 ¥4000 档</h4><p>K100 Pro 起售 ¥3999、Pro Max 起售 ¥4499，受存储芯片涨价周期影响，K 系列起售价首次集体突破四千元，标志红米品牌继续向上冲击高端。</p></div>
+    <div class="hl"><div class="rank">02</div><h4>Pro Max 搭载 9070mAh 史上最大电池</h4><p>采用小米金沙江电池技术，Pro Max 电池容量达 9070mAh(typ)，为红米手机史上最大，配合 100W 有线 + 50W 无线快充，续航与回血速度兼顾。</p></div>
+    <div class="hl"><div class="rank">03</div><h4>双旗舰先行、标准版后置的节奏调整</h4><p>红米首次在 K 系列采用"双旗舰先行、标准版后置"策略，与 7 月 14 日发布的 Note 17 系列形成 28 天产品周期闭环，意在稳固千元盘的同时冲击高端。</p></div>
+  </div>
+
+  <div class="section-title">新品价格总表</div>
+  <table class="price-table">
+    <thead><tr><th>型号</th><th>品类</th><th>起售价</th><th>定位</th><th>版本深度</th></tr></thead>
+    <tbody>
+      <tr><td>Redmi K100 Pro</td><td>手机</td><td class="price-num">¥3,999</td><td>满血旗舰双芯 · 185Hz 电竞屏</td><td>完整版 8 段</td></tr>
+      <tr><td>Redmi K100 Pro Max</td><td>手机</td><td class="price-num">¥4,499</td><td>满血满配满分旗舰 · 9070mAh</td><td>完整版 8 段</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TAB 1: Redmi K100 Pro -->
+<div class="pane" id="pane1">
+  <h2 class="product-title">Redmi K100 Pro</h2>
+
+  <div class="product-img-wrap">
+    <img src="https://cdn.cnbj1.fds.api.mi-img.com/product-images/new-product-images/redmi-k100-pro_37609/images/646.png" alt="Redmi K100 Pro" />
+    <div class="product-img-placeholder">
+      <div class="icon">🖼️</div>
+      <div>产品图待填入</div>
+      <div class="hint">打开此 HTML 文件，找到本品对应的<br>src="" 注释，粘贴图片直链后保存刷新</div>
+    </div>
+  </div>
+
+  <!-- A: Hero 核心规格 + 评分 -->
+  <div class="hero-grid">
+    <div class="hero-card">
+      <h3>核心规格</h3>
+      <div class="spec-row"><span class="k">处理器</span><span class="v">第五代骁龙8至尊版 V Series（SM8850-1-AB）</span></div>
+      <div class="spec-row"><span class="k">插帧芯片</span><span class="v">AI 游戏独显 D2（台积电12nm）</span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v">6.59" AMOLED 直屏 · 2510×1156 · 185Hz</span></div>
+      <div class="spec-row"><span class="k">峰值亮度</span><span class="v">4500nits（多场景峰值）</span></div>
+      <div class="spec-row"><span class="k">后置主摄</span><span class="v">200MP 1/1.56" OIS · ƒ/1.68</span></div>
+      <div class="spec-row"><span class="k">后置长焦</span><span class="v">50MP 2.5X 黄金长焦 · OIS</span></div>
+      <div class="spec-row"><span class="k">后置超广角</span><span class="v">8MP · 112°</span></div>
+      <div class="spec-row"><span class="k">前置相机</span><span class="v">32MP 高清</span></div>
+      <div class="spec-row"><span class="k">电池</span><span class="v">8580mAh(typ) / 8410mAh(min)</span></div>
+      <div class="spec-row"><span class="k">有线快充</span><span class="v">100W</span></div>
+      <div class="spec-row"><span class="k">无线快充</span><span class="v">50W</span></div>
+      <div class="spec-row"><span class="k">尺寸</span><span class="v">157.49 × 75.25 × 8.55 mm</span></div>
+      <div class="spec-row"><span class="k">重量</span><span class="v">218g</span></div>
+      <div class="spec-row"><span class="k">机身材料</span><span class="v">四曲包裹式金属中框 + 玻璃背板</span></div>
+      <div class="spec-row"><span class="k">IP 防水</span><span class="v">IP68（1.5米水深30分钟）</span></div>
+      <div class="spec-row"><span class="k">操作系统</span><span class="v">Xiaomi HyperOS 3</span></div>
+      <div class="spec-row"><span class="k">起售价</span><span class="v">¥3,999（12+256GB）</span></div>
+    </div>
+    <div class="hero-card">
+      <h3>综合评分</h3>
+      <div class="spec-row"><span class="k">性能</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">第五代骁龙8至尊版 V Series + AI独显D2双芯组合，安兔兔超409万，旗舰级性能释放</span></span></span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">185Hz 电竞高刷 + 4500nits峰值 + M11发光材料 + 全亮度DC调光，同级顶配</span></span></span></div>
+      <div class="spec-row"><span class="k">续航</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">8580mAh 高硅碳电池 + 100W有线 + 50W无线，续航回血双强</span></span></span></div>
+      <div class="spec-row"><span class="k">影像</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">200MP主摄+50MP 2.5X长焦组合扎实，超广角仅8MP略弱</span></span></span></div>
+      <div class="spec-row"><span class="k">做工</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">金属中框+玻璃背板+IP68，218g/8.55mm 机身控制可接受</span></span></span></div>
+      <div class="spec-row"><span class="k">性价比</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">¥3999起售给到满血双芯+大电池+185Hz屏，同价位竞争力强</span></span></span></div>
+    </div>
+  </div>
+
+  <div class="hero-card exposed" style="margin-bottom:20px;">
+    <h3>⚡ 行业媒体曝光参数（非官方）</h3>
+    <div class="spec-row"><span class="k">散热系统<span class="exposed-tag">曝光</span></span><span class="v">3D循环冷泵散热系统（媒体曝光，来源：IT之家/爱范儿）</span></div>
+    <div class="spec-row"><span class="k">VC均热板面积<span class="exposed-tag">曝光</span></span><span class="v">预估 6000~6500 mm² 区间（媒体预估，官方未公布精确数值）</span></div>
+    <div class="spec-row"><span class="k">安兔兔跑分<span class="exposed-tag">曝光</span></span><span class="v">超 409 万分（媒体曝光，来源：极客湾/官方预热）</span></div>
+  </div>
+
+  <!-- ② Top5 升级 -->
+  <div class="section-title">② 🚀 Top5 升级</div>
+  <div class="upgrade-list">
+    <div class="upgrade-item"><div class="badge">1</div><div class="body"><h5>满血双芯：第五代骁龙8至尊版 V Series + AI独显D2</h5><p>台积电第三代3nm工艺，CPU最高主频4.6GHz，搭配12nm制程的AI独显D2插帧芯片，支持1.5K超级分辨率超分超帧超画三并发。</p></div></div>
+    <div class="upgrade-item"><div class="badge">2</div><div class="body"><h5>185Hz 电竞高刷屏 + M11发光材料</h5><p>6.59" AMOLED直屏，2510×1156新一代超级像素排列，多场景峰值亮度4500nits，全亮度DC调光，1nit最低亮度，3D超声波指纹+湿手触控2.0。</p></div></div>
+    <div class="upgrade-item"><div class="badge">3</div><div class="body"><h5>8580mAh 高硅碳小米金沙江电池</h5><p>超大容量电池，配合100W有线+50W无线+27W有线反充+22.5W无线反充，澎湃P3充电芯片+G2电量计芯片双芯加持。</p></div></div>
+    <div class="upgrade-item"><div class="badge">4</div><div class="body"><h5>2亿像素旗舰主摄 + 2.5X黄金长焦微距</h5><p>200MP主摄1/1.56"大底+OIS+ƒ/1.68大光圈，50MP 2.5X长焦支持OIS与10cm长焦微距，60X最高变焦。</p></div></div>
+    <div class="upgrade-item"><div class="badge">5</div><div class="body"><h5>IP68 + 双1115F超线性对称双扬 + 澎湃T1+信号芯片</h5><p>满级防水、豪华双扬声器、信号增强芯片、X轴线性马达、红外遥控、NFC全功能，外围配置拉满。</p></div></div>
+  </div>
+
+  <!-- ③ 参数 Diff -->
+  <div class="section-title">③ 📊 参数 Diff — 对标 iQOO Neo10 Pro（2025年12月，¥3,399起）</div>
+  <table class="diff-table">
+    <thead><tr><th>维度</th><th>本品 K100 Pro</th><th>iQOO Neo10 Pro</th><th>差异判断</th></tr></thead>
+    <tbody>
+      <tr><td>处理器</td><td>第五代骁龙8至尊版 V Series（3nm）</td><td>天玑9400（3nm）+ 电竞芯片Q2</td><td><span class="delta up">▲ 骁龙8至尊版平台更新一代</span></td></tr>
+      <tr><td>屏幕尺寸</td><td>6.59" AMOLED直屏</td><td>6.78" AMOLED直屏</td><td><span class="delta flat">＝ 尺寸接近</span></td></tr>
+      <tr><td>刷新率</td><td>185Hz</td><td>144Hz</td><td><span class="delta up">▲ 刷新率更高</span></td></tr>
+      <tr><td>峰值亮度</td><td>4500nits</td><td>4500nit</td><td><span class="delta flat">＝ 亮度持平</span></td></tr>
+      <tr><td>主摄</td><td>200MP 1/1.56" OIS</td><td>50MP IMX921 OIS</td><td><span class="delta up">▲ 像素与大底更高</span></td></tr>
+      <tr><td>长焦</td><td>50MP 2.5X OIS</td><td>无独立长焦</td><td><span class="delta up">▲ 多一颗长焦</span></td></tr>
+      <tr><td>超广角</td><td>8MP 112°</td><td>8MP</td><td><span class="delta flat">＝ 持平</span></td></tr>
+      <tr><td>电池容量</td><td>8580mAh</td><td>6100mAh</td><td><span class="delta up">▲ 容量大幅领先</span></td></tr>
+      <tr><td>有线快充</td><td>100W</td><td>120W</td><td><span class="delta down">▼ 有线功率略低</span></td></tr>
+      <tr><td>无线快充</td><td>50W</td><td>不支持</td><td><span class="delta up">▲ 多无线快充</span></td></tr>
+      <tr><td>机身厚度</td><td>8.55mm</td><td>8.2mm</td><td><span class="delta down">▼ 略厚0.35mm</span></td></tr>
+      <tr><td>重量</td><td>218g</td><td>约205g</td><td><span class="delta down">▼ 重13g</span></td></tr>
+      <tr><td>IP防水</td><td>IP68</td><td>IP65</td><td><span class="delta up">▲ 防水等级更高</span></td></tr>
+      <tr><td>起售价</td><td>¥3,999</td><td>¥3,399</td><td><span class="delta down">▼ 贵600元</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ④ AI 自动总结 -->
+  <div class="section-title">④ 🧠 AI 自动总结</div>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="label">📣 最大卖点</div><p>满血双芯+185Hz电竞屏+8580mAh大电池的组合在¥4000档极具杀伤力，性能、屏幕、续航三项核心维度同时拉满。</p></div>
+    <div class="ai-card"><div class="label">⚠️ 最大短板</div><p>超广角仅8MP偏弱，与200MP主摄+50MP长焦的旗舰组合不匹配；218g+8.55mm机身偏厚重。</p></div>
+    <div class="ai-card"><div class="label">🎯 最适合人群</div><p>追求极致性能与续航的重度游戏玩家、长续航刚需用户，预算¥4000档想一步到位的旗舰换机人群。</p></div>
+    <div class="ai-card"><div class="label">🔮 市场判断</div><p>红米K系列首次集体上探¥4000档，存储涨价周期下以满血配置支撑溢价，对iQOO Neo10 Pro等同级竞品形成"代差级"压制，但需接受重量与厚度代价。</p></div>
+  </div>
+
+  <!-- ⑤ 与上代变化 -->
+  <div class="section-title">⑤ 📈 与上代变化（参照 Redmi K90 Max，上一代同级机型）</div>
+  <div class="chart-wrap">
+    <h4>电池容量对比（mAh）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart1_1"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Max（前代）</td><td>8550 mAh</td><td class="delta-cell"><span class="delta up">▲ +30 mAh / +0.4%</span></td></tr>
+      <tr><td>Redmi K100 Pro（本代）</td><td>8580 mAh</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>机身重量对比（g）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart1_2"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Max（前代）</td><td>227 g</td><td class="delta-cell"><span class="delta up">▲ -9 g / -4.0%</span></td></tr>
+      <tr><td>Redmi K100 Pro（本代）</td><td>218 g</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>机身厚度对比（mm）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart1_3"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Max（前代）</td><td>8.18 mm</td><td class="delta-cell"><span class="delta down">▼ +0.37 mm / +4.5%</span></td></tr>
+      <tr><td>Redmi K100 Pro（本代）</td><td>8.55 mm</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>屏幕刷新率对比（Hz）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart1_4"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Max（前代）</td><td>165 Hz</td><td class="delta-cell"><span class="delta up">▲ +20 Hz / +12.1%</span></td></tr>
+      <tr><td>Redmi K100 Pro（本代）</td><td>185 Hz</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="notice">说明：K90 系列无"Pro"版本，同级前代为 Redmi K90 Max（天玑9500）。本代 K100 Pro 换用第五代骁龙8至尊版 V Series 平台，电池容量基本持平（+30mAh），重量反而减轻9g，刷新率提升至185Hz，但厚度增加0.37mm。核心变化是平台从天玑切换至骁龙、新增50W无线快充、主摄从50MP升级至200MP。</div>
+
+  <!-- ⑥ 竞品 SWOT -->
+  <div class="section-title">⑥ 🏆 竞品 SWOT（对标 iQOO Neo10 Pro）</div>
+  <div class="swot">
+    <div class="swot-cell"><h4>S · 优势</h4><ul><li>处理器平台更新一代（骁龙8至尊版 vs 天玑9400）</li><li>电池容量 8580mAh 远超 6100mAh</li><li>多 50W 无线快充</li><li>多 50MP 2.5X 长焦镜头</li><li>IP68 vs IP65 防水更高</li><li>185Hz vs 144Hz 刷新率更高</li></ul></div>
+    <div class="swot-cell"><h4>W · 劣势</h4><ul><li>起售价贵 ¥600</li><li>机身厚 0.35mm、重 13g</li><li>有线快充 100W vs 120W 略低</li><li>超广角像素持平但无差异化优势</li></ul></div>
+    <div class="swot-cell"><h4>O · 机会</h4><ul><li>存储涨价周期下大电池+满血配置更具稀缺性</li><li>红米品牌冲高窗口期，K系列溢价被市场逐步接受</li><li>电竞用户对185Hz+双芯组合敏感度高</li></ul></div>
+    <div class="swot-cell"><h4>T · 威胁</h4><ul><li>iQOO Neo11 Pro 系列若2026Q4发布将形成代际反超</li><li>同价位真我GT7 Pro等竞品同样主打大电池</li><li>¥4000档消费者对重量厚度敏感度上升</li></ul></div>
+  </div>
+
+  <!-- ⑦ 全量参数折叠 -->
+  <details>
+    <summary>📋 全量参数展开</summary>
+    <table class="param-table">
+      <tr><td>处理器</td><td>第五代骁龙8至尊版 V Series（SM8850-1-AB），台积电第三代3nm工艺，第三代高通Oryon CPU最高主频4.6GHz，Adreno GPU</td></tr>
+      <tr><td>插帧芯片</td><td>AI 游戏独显 D2，台积电12nm工艺，超分超帧超画（超HDR）三并发，1.5K超级分辨率</td></tr>
+      <tr><td>内存</td><td>12GB/16GB LPDDR5X Ultra 高速内存</td></tr>
+      <tr><td>存储</td><td>256GB/512GB UFS 4.1 高速存储（已通过固件升级支持UFS 4.1）</td></tr>
+      <tr><td>屏幕类型</td><td>6.59英寸 AMOLED 直屏</td></tr>
+      <tr><td>分辨率</td><td>2510 × 1156 新一代超级像素</td></tr>
+      <tr><td>刷新率</td><td>最高 185Hz（部分应用/游戏场景下生效）</td></tr>
+      <tr><td>触控采样率</td><td>最高 480Hz，瞬时最高 4800Hz（游戏场景）</td></tr>
+      <tr><td>峰值亮度</td><td>多场景峰值 4500nits，最低亮度 1nit</td></tr>
+      <tr><td>调光</td><td>全亮度 DC 调光</td></tr>
+      <tr><td>色域</td><td>P3 广色域，屏幕硬件支持 BT.2020，12bit色深（687亿色），DCI-P3广色域，专业原色屏，多屏同色</td></tr>
+      <tr><td>HDR</td><td>HDR10+、HDR Vivid、Dolby Vision</td></tr>
+      <tr><td>指纹</td><td>3D 超声波指纹，湿手触控 2.0</td></tr>
+      <tr><td>后置主摄</td><td>200MP 旗舰主摄，1/1.56英寸大底，ƒ/1.68大光圈，16in1 2μm融合大像素，OIS光学防抖，6P镜头</td></tr>
+      <tr><td>后置长焦</td><td>50MP 2.5X黄金长焦，1/2.75英寸大底，ƒ/2.0光圈，4in1 1.28μm融合大像素，2.5X光学变焦，5X无损变焦，60X最高变焦，OIS光学防抖</td></tr>
+      <tr><td>后置超广角</td><td>8MP 超广角，112°超广视角，5P镜头</td></tr>
+      <tr><td>前置相机</td><td>32MP 高清相机</td></tr>
+      <tr><td>后置视频</td><td>4K 30/60fps，1080P 30/60fps，720P 30fps；慢动作 1080P/720P 120/240/480/960/1920fps</td></tr>
+      <tr><td>电池</td><td>8580mAh(typ) / 8410mAh(min)，内置锂离子聚合物电池不可拆卸</td></tr>
+      <tr><td>有线快充</td><td>100W 小米澎湃有线快充</td></tr>
+      <tr><td>无线快充</td><td>50W 小米澎湃无线快充</td></tr>
+      <tr><td>反向充电</td><td>27W 有线反充 + 22.5W 无线反充</td></tr>
+      <tr><td>充电芯片</td><td>小米澎湃 P3 充电芯片 + 小米澎湃 G2 自研电量计芯片</td></tr>
+      <tr><td>充电协议</td><td>QC2.0/QC3.0/PD2.0/PD3.0，USB Type-C双面充电接口，标配100W充电器兼容PD</td></tr>
+      <tr><td>机身尺寸</td><td>长度 157.49mm × 宽度 75.25mm × 厚度 8.55mm</td></tr>
+      <tr><td>重量</td><td>218g</td></tr>
+      <tr><td>机身材料</td><td>四曲包裹式金属中框 + 玻璃背板（媒体曝光，来源：IT之家/爱范儿）</td></tr>
+      <tr><td>IP防水</td><td>IP68（1.5米水深30分钟）</td></tr>
+      <tr><td>散热系统</td><td>3D循环冷泵散热系统（媒体曝光，来源：IT之家/爱范儿）；VC均热板面积预估6000~6500mm²区间（官方未公布精确数值）</td></tr>
+      <tr><td>扬声器</td><td>双 1115F 超线性对称双扬声器</td></tr>
+      <tr><td>信号芯片</td><td>小米澎湃 T1+ 信号增强芯片</td></tr>
+      <tr><td>马达</td><td>X 轴线性马达</td></tr>
+      <tr><td>红外</td><td>支持红外遥控</td></tr>
+      <tr><td>NFC</td><td>支持交通卡、Mi Pay、门卡、车钥匙功能</td></tr>
+      <tr><td>传感器</td><td>光学距离传感器、360°前后双光感、加速度传感器、环境色温传感器、电子罗盘、陀螺仪、红外遥控、Flicker传感器、X轴线性马达</td></tr>
+      <tr><td>Wi-Fi</td><td>Wi-Fi 7/6/5/4 及 802.11a/b/g，2x2 MIMO，2.4G/5G双路并发</td></tr>
+      <tr><td>蓝牙</td><td>Bluetooth 6.0，支持 AAC/LDAC/LHDC 5.0/LC3/ASHA/Auracast/MIHC</td></tr>
+      <tr><td>导航定位</td><td>北斗 B1I+B1C+B2a、GPS L1+L5、Galileo E1+E5a、GLONASS G1、QZSS L1+L5、NavIC、A-GNSS</td></tr>
+      <tr><td>操作系统</td><td>Xiaomi HyperOS 3</td></tr>
+      <tr><td>配色</td><td>黑色、白色、流萤追光、赤霞珠红</td></tr>
+      <tr><td>存储档位与价格</td><td>12+256GB ¥3,999（首销¥3,699）/ 12+512GB ¥4,599（首销¥4,299）/ 16+256GB ¥4,399（首销¥4,099）/ 16+512GB ¥4,999（首销¥4,699）</td></tr>
+    </table>
+  </details>
+
+  <!-- ⑧ 来源 -->
+  <div class="section-title">⑧ 📎 来源</div>
+  <div class="hero-card">
+    <h3>数据来源</h3>
+    <div class="spec-row"><span class="k">官方规格页</span><span class="v">小米官网 mi.com/prod/redmi-k100-pro/specs</span></div>
+    <div class="spec-row"><span class="k">官方购买页</span><span class="v">小米商城 mi.com/shop/buy/detail?product_id=25135</span></div>
+    <div class="spec-row"><span class="k">产品主图</span><span class="v">小米官网 CDN（cdn.cnbj1.fds.api.mi-img.com）</span></div>
+    <div class="spec-row"><span class="k">媒体来源</span><span class="v">IT之家、爱范儿、中关村在线、数码闲聊站、极客湾</span></div>
+    <div class="spec-row"><span class="k">竞品规格</span><span class="v">iQOO 官网 + IT之家/中关村在线评测（Neo10 Pro，2025年12月）</span></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" disabled>← 上一品</button>
+    <button class="nav-btn" onclick="switchTab(2)">下一品 →</button>
+  </div>
+</div>
+
+<!-- TAB 2: Redmi K100 Pro Max -->
+<div class="pane" id="pane2">
+  <h2 class="product-title">Redmi K100 Pro Max</h2>
+
+  <div class="product-img-wrap">
+    <img src="https://cdn.cnbj1.fds.api.mi-img.com/product-images/new-product-images/redmi-k100-pro-max_13406/images/8.png" alt="Redmi K100 Pro Max" />
+    <div class="product-img-placeholder">
+      <div class="icon">🖼️</div>
+      <div>产品图待填入</div>
+      <div class="hint">打开此 HTML 文件，找到本品对应的<br>src="" 注释，粘贴图片直链后保存刷新</div>
+    </div>
+  </div>
+
+  <!-- A: Hero 核心规格 + 评分 -->
+  <div class="hero-grid">
+    <div class="hero-card">
+      <h3>核心规格</h3>
+      <div class="spec-row"><span class="k">处理器</span><span class="v">第五代骁龙8至尊版（满血版）</span></div>
+      <div class="spec-row"><span class="k">插帧芯片</span><span class="v">AI 游戏独显 D2（台积电12nm）</span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v">6.9" AMOLED 直屏 · 2608×1200 · 185Hz</span></div>
+      <div class="spec-row"><span class="k">峰值亮度</span><span class="v">4500nits（多场景峰值）</span></div>
+      <div class="spec-row"><span class="k">后置主摄</span><span class="v">200MP 1/1.56" OIS · ƒ/1.68</span></div>
+      <div class="spec-row"><span class="k">后置长焦</span><span class="v">50MP 5X 潜望长焦 · OIS · 100X</span></div>
+      <div class="spec-row"><span class="k">后置超广角</span><span class="v">50MP · 102°</span></div>
+      <div class="spec-row"><span class="k">前置相机</span><span class="v">32MP 高清</span></div>
+      <div class="spec-row"><span class="k">电池</span><span class="v">9070mAh(typ) / 8870mAh(min)</span></div>
+      <div class="spec-row"><span class="k">有线快充</span><span class="v">100W</span></div>
+      <div class="spec-row"><span class="k">无线快充</span><span class="v">50W</span></div>
+      <div class="spec-row"><span class="k">尺寸</span><span class="v">163.49 × 77.94 × 8.45 mm</span></div>
+      <div class="spec-row"><span class="k">重量</span><span class="v">238g</span></div>
+      <div class="spec-row"><span class="k">机身材料</span><span class="v">四曲包裹式金属中框 + 玻璃背板</span></div>
+      <div class="spec-row"><span class="k">IP 防水</span><span class="v">IP68 / IP69 满级防水</span></div>
+      <div class="spec-row"><span class="k">操作系统</span><span class="v">Xiaomi HyperOS 3</span></div>
+      <div class="spec-row"><span class="k">起售价</span><span class="v">¥4,499（12+256GB）</span></div>
+    </div>
+    <div class="hero-card">
+      <h3>综合评分</h3>
+      <div class="spec-row"><span class="k">性能</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">满血版第五代骁龙8至尊版 + AI独显D2，安兔兔455.5万，满血满配</span></span></span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">6.9"大屏 + 185Hz + 4500nits + M11材料，子像素超越同尺寸2K钻排</span></span></span></div>
+      <div class="spec-row"><span class="k">续航</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">9070mAh 红米史上最大电池 + 100W有线 + 50W无线，续航天花板</span></span></span></div>
+      <div class="spec-row"><span class="k">影像</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">200MP主摄+50MP 5X潜望长焦+50MP超广角，全焦段无短板</span></span></span></div>
+      <div class="spec-row"><span class="k">做工</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">金属中框+玻璃背板+IP68/IP69满级防水，238g/8.45mm偏厚重</span></span></span></div>
+      <div class="spec-row"><span class="k">性价比</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">¥4499起售给到满血配置+9070mAh+5X潜望，同价位配置堆叠极致</span></span></span></div>
+    </div>
+  </div>
+
+  <div class="hero-card exposed" style="margin-bottom:20px;">
+    <h3>⚡ 行业媒体曝光参数（非官方）</h3>
+    <div class="spec-row"><span class="k">散热系统<span class="exposed-tag">曝光</span></span><span class="v">3D循环冷泵 + 一体化金属DECO导热石墨均热层（媒体曝光，来源：爱范儿/中关村在线）</span></div>
+    <div class="spec-row"><span class="k">VC均热板面积<span class="exposed-tag">曝光</span></span><span class="v">预估 7000~7500 mm² 区间（媒体预估，官方未公布精确数值）</span></div>
+    <div class="spec-row"><span class="k">安兔兔跑分<span class="exposed-tag">曝光</span></span><span class="v">455.5 万分（媒体曝光，来源：官方发布会/新评科技）</span></div>
+    <div class="spec-row"><span class="k">悬浮灯环<span class="exposed-tag">曝光</span></span><span class="v">一体化金属DECO区域悬浮灯环设计（媒体曝光，来源：官方预热）</span></div>
+  </div>
+
+  <!-- ② Top5 升级 -->
+  <div class="section-title">② 🚀 Top5 升级</div>
+  <div class="upgrade-list">
+    <div class="upgrade-item"><div class="badge">1</div><div class="body"><h5>9070mAh 小米金沙江电池 · 红米史上最大</h5><p>红米手机史上最大电池容量，配合100W有线+50W无线+27W有线反充+22.5W无线反充，续航能力达到旗舰天花板级别。</p></div></div>
+    <div class="upgrade-item"><div class="badge">2</div><div class="body"><h5>满血版第五代骁龙8至尊版 + AI独显D2</h5><p>满血版处理器（K100 Pro为V Series残血版），安兔兔跑分455.5万，搭配12nm制程AI独显D2插帧芯片，1.5K超级分辨率超分超帧超画三并发。</p></div></div>
+    <div class="upgrade-item"><div class="badge">3</div><div class="body"><h5>50MP 5X潜望长焦 · 100X最高变焦</h5><p>1/2.75"大底，ƒ/3.0光圈，5X潜望长焦+10X无损变焦+100X最高变焦+OIS光学防抖，远摄能力显著超越K100 Pro的2.5X长焦。</p></div></div>
+    <div class="upgrade-item"><div class="badge">4</div><div class="body"><h5>2.1立体声系统 · 豪华三扬</h5><p>双1115D大师级对称双扬 + 1620超大尺寸"低音炮"，Bose联调2.1声道三扬声器系统，影音体验同级罕见。</p></div></div>
+    <div class="upgrade-item"><div class="badge">5</div><div class="body"><h5>6.9"大屏 + IP68/IP69满级防水 + 1TB顶配</h5><p>6.9英寸AMOLED直屏，2608×1200超级像素超越同尺寸2K钻排；IP68/IP69满级防水支持高温高压水流冲洗；16GB+1TB限量2万台典藏版。</p></div></div>
+  </div>
+
+  <!-- ③ 参数 Diff -->
+  <div class="section-title">③ 📊 参数 Diff — 对标 iQOO Neo10 Pro+（2025年12月，¥3,999起）</div>
+  <table class="diff-table">
+    <thead><tr><th>维度</th><th>本品 K100 Pro Max</th><th>iQOO Neo10 Pro+</th><th>差异判断</th></tr></thead>
+    <tbody>
+      <tr><td>处理器</td><td>第五代骁龙8至尊版（满血版）</td><td>第五代骁龙8至尊版</td><td><span class="delta up">▲ 本品为满血版</span></td></tr>
+      <tr><td>屏幕尺寸</td><td>6.9" AMOLED直屏</td><td>6.78" AMOLED直屏</td><td><span class="delta up">▲ 屏幕更大</span></td></tr>
+      <tr><td>分辨率</td><td>2608×1200</td><td>1.5K</td><td><span class="delta flat">＝ 分辨率接近</span></td></tr>
+      <tr><td>刷新率</td><td>185Hz</td><td>144Hz</td><td><span class="delta up">▲ 刷新率更高</span></td></tr>
+      <tr><td>峰值亮度</td><td>4500nits</td><td>5000nit</td><td><span class="delta down">▼ 亮度略低</span></td></tr>
+      <tr><td>主摄</td><td>200MP 1/1.56" OIS</td><td>50MP LYT-818 OIS</td><td><span class="delta up">▲ 像素与大底更高</span></td></tr>
+      <tr><td>长焦</td><td>50MP 5X潜望 OIS 100X</td><td>50MP 2X人像 OIS</td><td><span class="delta up">▲ 潜望长焦远摄更强</span></td></tr>
+      <tr><td>超广角</td><td>50MP 102°</td><td>8MP</td><td><span class="delta up">▲ 超广角大幅领先</span></td></tr>
+      <tr><td>电池容量</td><td>9070mAh</td><td>6150mAh</td><td><span class="delta up">▲ 容量大幅领先</span></td></tr>
+      <tr><td>有线快充</td><td>100W</td><td>120W</td><td><span class="delta down">▼ 有线功率略低</span></td></tr>
+      <tr><td>无线快充</td><td>50W</td><td>100W</td><td><span class="delta down">▼ 无线功率低</span></td></tr>
+      <tr><td>机身厚度</td><td>8.45mm</td><td>8.4mm</td><td><span class="delta flat">＝ 基本持平</span></td></tr>
+      <tr><td>重量</td><td>238g</td><td>约212g</td><td><span class="delta down">▼ 重26g</span></td></tr>
+      <tr><td>IP防水</td><td>IP68/IP69</td><td>IP68</td><td><span class="delta up">▲ 多IP69满级</span></td></tr>
+      <tr><td>扬声器</td><td>三扬 2.1声道</td><td>双扬</td><td><span class="delta up">▲ 多独立低音炮</span></td></tr>
+      <tr><td>起售价</td><td>¥4,499</td><td>¥3,999</td><td><span class="delta down">▼ 贵500元</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ④ AI 自动总结 -->
+  <div class="section-title">④ 🧠 AI 自动总结</div>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="label">📣 最大卖点</div><p>9070mAh红米史上最大电池+5X潜望长焦+2.1三扬+IP69满级防水，配置堆叠达到同价位极致，"满血满配满分旗舰"名副其实。</p></div>
+    <div class="ai-card"><div class="label">⚠️ 最大短板</div><p>238g重量+8.45mm厚度在同级偏厚重；无线快充50W低于iQOO Neo10 Pro+的100W；起售价¥4499已接近自家小米数字旗舰价位段。</p></div>
+    <div class="ai-card"><div class="label">🎯 最适合人群</div><p>追求顶级续航+全焦段影像+大屏影音体验的重度用户，预算¥4500-6000档追求"一步到位"满配旗舰的极客与游戏玩家。</p></div>
+    <div class="ai-card"><div class="label">🔮 市场判断</div><p>红米K系列Pro Max首次将电池推至9000mAh级、影像补齐潜望长焦，对iQOO Neo10 Pro+形成"大电池+全焦段+三扬"的差异化压制，但需接受重量代价，与自家小米数字旗舰的价位重叠是潜在风险。</p></div>
+  </div>
+
+  <!-- ⑤ 与上代变化 -->
+  <div class="section-title">⑤ 📈 与上代变化（参照 Redmi K90 Pro Max，上一代同型号）</div>
+  <div class="chart-wrap">
+    <h4>电池容量对比（mAh）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart2_1"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Pro Max（前代）</td><td>7560 mAh</td><td class="delta-cell"><span class="delta up">▲ +1510 mAh / +20.0%</span></td></tr>
+      <tr><td>Redmi K100 Pro Max（本代）</td><td>9070 mAh</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>机身重量对比（g）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart2_2"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Pro Max（前代）</td><td>218 g</td><td class="delta-cell"><span class="delta down">▼ +20 g / +9.2%</span></td></tr>
+      <tr><td>Redmi K100 Pro Max（本代）</td><td>238 g</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>机身厚度对比（mm）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart2_3"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Pro Max（前代）</td><td>7.9 mm</td><td class="delta-cell"><span class="delta down">▼ +0.55 mm / +7.0%</span></td></tr>
+      <tr><td>Redmi K100 Pro Max（本代）</td><td>8.45 mm</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="chart-wrap">
+    <h4>屏幕刷新率对比（Hz）</h4>
+    <div class="chart-canvas-wrap"><canvas id="chart2_4"></canvas></div>
+    <table class="chart-table">
+      <tr><td>Redmi K90 Pro Max（前代）</td><td>120 Hz</td><td class="delta-cell"><span class="delta up">▲ +65 Hz / +54.2%</span></td></tr>
+      <tr><td>Redmi K100 Pro Max（本代）</td><td>185 Hz</td><td class="delta-cell">—</td></tr>
+    </table>
+  </div>
+  <div class="notice">说明：前代数值参照 Redmi K90 Pro Max 官网规格。电池容量大幅扩容1510mAh（+20%）、刷新率从120Hz跃升至185Hz是本代最显著变化，代价是机身重量增加20g、厚度增加0.55mm。处理器平台沿用第五代骁龙8至尊版（本代为满血版），屏幕尺寸6.9"维持不变。</div>
+
+  <!-- ⑥ 竞品 SWOT -->
+  <div class="section-title">⑥ 🏆 竞品 SWOT（对标 iQOO Neo10 Pro+）</div>
+  <div class="swot">
+    <div class="swot-cell"><h4>S · 优势</h4><ul><li>电池容量 9070mAh 远超 6150mAh</li><li>5X潜望长焦 vs 2X人像，远摄能力代差级领先</li><li>50MP超广角 vs 8MP超广角</li><li>6.9"大屏 vs 6.78"</li><li>IP68/IP69满级 vs IP68</li><li>三扬2.1声道 vs 双扬</li><li>满血版骁龙8至尊版</li></ul></div>
+    <div class="swot-cell"><h4>W · 劣势</h4><ul><li>起售价贵 ¥500</li><li>无线快充 50W vs 100W</li><li>重 26g</li><li>峰值亮度 4500 vs 5000nits略低</li></ul></div>
+    <div class="swot-cell"><h4>O · 机会</h4><ul><li>9000mAh级电池在2026年仍属稀缺配置</li><li>全焦段影像+三扬差异化卖点清晰</li><li>1TB典藏版限量2万台营造稀缺性</li></ul></div>
+    <div class="swot-cell"><h4>T · 威胁</h4><ul><li>¥4499-5999价位与小米数字旗舰重叠</li><li>iQOO Neo11 Pro+ 若2026Q4发布将反超</li><li>238g重量在高端市场接受度受限</li></ul></div>
+  </div>
+
+  <!-- ⑦ 全量参数折叠 -->
+  <details>
+    <summary>📋 全量参数展开</summary>
+    <table class="param-table">
+      <tr><td>处理器</td><td>第五代骁龙8至尊版（满血版）移动平台，台积电第三代3nm工艺，第三代高通Oryon CPU最高主频4.6GHz，Adreno GPU</td></tr>
+      <tr><td>插帧芯片</td><td>AI 游戏独显 D2，台积电12nm工艺，超分超帧超画（超HDR）三并发，1.5K超级分辨率</td></tr>
+      <tr><td>内存</td><td>12GB/16GB LPDDR5X Ultra 高速内存</td></tr>
+      <tr><td>存储</td><td>256GB/512GB/1TB UFS 4.1 高速存储（已通过固件升级支持UFS 4.1）</td></tr>
+      <tr><td>屏幕类型</td><td>6.9英寸 AMOLED 直屏</td></tr>
+      <tr><td>分辨率</td><td>2608 × 1200 新一代超级像素（子像素数超越同尺寸2K钻排）</td></tr>
+      <tr><td>刷新率</td><td>最高 185Hz（部分应用/游戏场景下生效）</td></tr>
+      <tr><td>触控采样率</td><td>最高 480Hz，瞬时最高 4800Hz（游戏场景）</td></tr>
+      <tr><td>峰值亮度</td><td>多场景峰值 4500nits，最低亮度 1nit</td></tr>
+      <tr><td>调光</td><td>全亮度 DC 调光</td></tr>
+      <tr><td>色域</td><td>P3 广色域，屏幕硬件支持 BT.2020，12bit色深（687亿色），DCI-P3广色域，专业原色屏，多屏同色</td></tr>
+      <tr><td>HDR</td><td>HDR10+、HDR Vivid、Dolby Vision</td></tr>
+      <tr><td>指纹</td><td>3D 超声波指纹，湿手触控 2.0</td></tr>
+      <tr><td>后置主摄</td><td>200MP 旗舰主摄，1/1.56英寸大底，ƒ/1.68大光圈，16in1 2μm融合大像素，OIS光学防抖，6P镜头</td></tr>
+      <tr><td>后置长焦</td><td>50MP 5X潜望长焦，1/2.75英寸大底，ƒ/3.0光圈，4in1 1.28μm融合大像素，5X潜望长焦，10X无损变焦，100X最高变焦，OIS光学防抖</td></tr>
+      <tr><td>后置超广角</td><td>50MP 高清超广角，ƒ/2.4光圈，102°超广视角</td></tr>
+      <tr><td>前置相机</td><td>32MP 高清相机</td></tr>
+      <tr><td>后置视频</td><td>8K 30fps，4K 30/60fps，1080P 30/60fps，720P 30fps；慢动作 1080P/720P 120/240/480/960/1920fps</td></tr>
+      <tr><td>电池</td><td>9070mAh(typ) / 8870mAh(min)，内置锂离子聚合物电池不可拆卸</td></tr>
+      <tr><td>有线快充</td><td>100W 小米澎湃有线快充</td></tr>
+      <tr><td>无线快充</td><td>50W 小米澎湃无线快充</td></tr>
+      <tr><td>反向充电</td><td>27W 有线反充 + 22.5W 无线反充</td></tr>
+      <tr><td>充电芯片</td><td>小米澎湃 P3 充电芯片 + 小米澎湃 G2 自研电量计芯片</td></tr>
+      <tr><td>充电协议</td><td>QC2.0/QC3.0/QC3+/PD2.0/PD3.0，USB Type-C双面充电接口，标配100W充电器兼容PD</td></tr>
+      <tr><td>机身尺寸</td><td>长度 163.49mm × 宽度 77.94mm × 厚度 8.45mm</td></tr>
+      <tr><td>重量</td><td>238g</td></tr>
+      <tr><td>机身材料</td><td>四曲包裹式金属中框（一体化金属DECO）+ 玻璃背板（媒体曝光，来源：爱范儿/中关村在线）</td></tr>
+      <tr><td>IP防水</td><td>IP68 / IP69 满级防水（支持高温高压水流冲洗）</td></tr>
+      <tr><td>散热系统</td><td>3D循环冷泵 + 一体化金属DECO导热石墨均热层（媒体曝光，来源：爱范儿/中关村在线）；VC均热板面积预估7000~7500mm²区间（官方未公布精确数值）</td></tr>
+      <tr><td>扬声器</td><td>2.1立体声系统豪华三扬：双 1115D 大师级对称双扬 + 1620 超大尺寸"低音炮"</td></tr>
+      <tr><td>马达</td><td>X 轴线性马达</td></tr>
+      <tr><td>红外</td><td>支持红外遥控</td></tr>
+      <tr><td>NFC</td><td>支持交通卡、Mi Pay、门卡、车钥匙功能</td></tr>
+      <tr><td>传感器</td><td>光学距离传感器、360°前后双光感、加速度传感器、环境色温传感器、电子罗盘、陀螺仪、红外遥控、Flicker传感器、X轴线性马达</td></tr>
+      <tr><td>Wi-Fi</td><td>Wi-Fi 7/6/5/4 及 802.11a/b/g，2x2 MIMO，2.4G/5G双路并发</td></tr>
+      <tr><td>蓝牙</td><td>Bluetooth 6.0，支持 AAC/LDAC/LHDC 5.0/LC3/ASHA/Auracast/MIHC</td></tr>
+      <tr><td>导航定位</td><td>北斗 B1I+B1C+B2a、GPS L1+L5、Galileo E1+E5a、GLONASS G1、QZSS L1+L5、NavIC、A-GNSS</td></tr>
+      <tr><td>操作系统</td><td>Xiaomi HyperOS 3</td></tr>
+      <tr><td>配色</td><td>黑色、流金白、追风蓝、赤霞珠红</td></tr>
+      <tr><td>存储档位与价格</td><td>12+256GB ¥4,499（首销¥4,199）/ 12+512GB ¥5,099（首销¥4,799）/ 16+256GB ¥4,899（首销¥4,599）/ 16+512GB ¥5,499（首销¥5,199）/ 16+1TB ¥5,999（限量2万台）</td></tr>
+    </table>
+  </details>
+
+  <!-- ⑧ 来源 -->
+  <div class="section-title">⑧ 📎 来源</div>
+  <div class="hero-card">
+    <h3>数据来源</h3>
+    <div class="spec-row"><span class="k">官方规格页</span><span class="v">小米官网 mi.com/prod/redmi-k100-pro-max/specs</span></div>
+    <div class="spec-row"><span class="k">官方购买页</span><span class="v">小米商城 mi.com/shop/buy/detail?product_id=25140</span></div>
+    <div class="spec-row"><span class="k">产品主图</span><span class="v">小米官网 CDN（cdn.cnbj1.fds.api.mi-img.com）</span></div>
+    <div class="spec-row"><span class="k">媒体来源</span><span class="v">爱范儿、中关村在线、新评科技、数码闲聊站</span></div>
+    <div class="spec-row"><span class="k">竞品规格</span><span class="v">iQOO 官网 + IT之家/中关村在线评测（Neo10 Pro+，2025年12月）</span></div>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="switchTab(1)">← 上一品</button>
+    <button class="nav-btn" disabled>下一品 →</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+function switchTab(n){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".pane").forEach(p=>p.classList.remove("active"));
+  document.querySelector("[data-tab=\""+n+"\"]").classList.add("active");
+  document.getElementById("pane"+n).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(n===1){initCharts1();}
+  if(n===2){initCharts2();}
+}
+
+var charts1Inited=false, charts2Inited=false;
+
+function initCharts1(){
+  if(charts1Inited) return; charts1Inited=true;
+  var opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}};
+  new Chart(document.getElementById("chart1_1"),{type:"bar",data:{labels:["K90 Max 前代","K100 Pro 本代"],datasets:[{data:[8550,8580],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart1_2"),{type:"bar",data:{labels:["K90 Max 前代","K100 Pro 本代"],datasets:[{data:[227,218],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart1_3"),{type:"bar",data:{labels:["K90 Max 前代","K100 Pro 本代"],datasets:[{data:[8.18,8.55],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart1_4"),{type:"bar",data:{labels:["K90 Max 前代","K100 Pro 本代"],datasets:[{data:[165,185],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+}
+
+function initCharts2(){
+  if(charts2Inited) return; charts2Inited=true;
+  var opts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}};
+  new Chart(document.getElementById("chart2_1"),{type:"bar",data:{labels:["K90 Pro Max 前代","K100 Pro Max 本代"],datasets:[{data:[7560,9070],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart2_2"),{type:"bar",data:{labels:["K90 Pro Max 前代","K100 Pro Max 本代"],datasets:[{data:[218,238],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart2_3"),{type:"bar",data:{labels:["K90 Pro Max 前代","K100 Pro Max 本代"],datasets:[{data:[7.9,8.45],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+  new Chart(document.getElementById("chart2_4"),{type:"bar",data:{labels:["K90 Pro Max 前代","K100 Pro Max 本代"],datasets:[{data:[120,185],backgroundColor:["#86868b","#FF4D1A"],borderRadius:6}]},options:opts});
+}
+</script>
+</body>
+</html>
