@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新品速递 · 发布会焦点速递 · 荣耀 Robot Phone</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fff;--card-bg:#f5f5f7;--text:#1d1d1f;--text-secondary:#86868b;
+  --border:#d2d2d7;--line:#e8e8ea;--accent:#0071e3;
+  --brand:#0a8f5b;   /* 荣耀标志绿，低饱和 */
+  --up:#1f6b43;--up-bg:#e7f1ea;
+  --down:#9a4f2e;--down-bg:#f5e7e0;
+  --flat:#6b6b70;--flat-bg:#eeeeef;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+.tabs{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--line);
+  display:flex;padding:0 22px;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:13px 20px;border:none;background:none;cursor:pointer;font-size:14px;
+  font-weight:500;color:var(--text-secondary);border-bottom:2.5px solid transparent;white-space:nowrap;}
+.tab.active{color:var(--text);border-bottom-color:var(--brand);font-weight:600;}
+.pane{display:none;padding:26px 22px 60px;max-width:980px;margin:0 auto;}
+.pane.active{display:block;}
+h1,h2,h3{margin:0 0 14px;}
+.report-cover{background:linear-gradient(135deg,#0a8f5b 0%,#0c6b4a 100%);color:#fff;border-radius:16px;
+  padding:30px 28px;margin-bottom:22px;}
+.report-cover .brand{font-size:13px;letter-spacing:1px;opacity:.9;font-weight:600;}
+.report-cover h1{font-size:26px;margin:8px 0 6px;color:#fff;}
+.report-cover .sub{font-size:14px;opacity:.92;}
+.report-cover .meta{margin-top:14px;font-size:13px;opacity:.9;display:flex;gap:18px;flex-wrap:wrap;}
+.event-banner{background:var(--card-bg);border-radius:14px;padding:18px 20px;margin:0 0 22px;
+  border-left:4px solid var(--brand);}
+.event-banner .tag{display:inline-block;font-size:12px;font-weight:600;color:var(--brand);
+  background:#e7f1ea;padding:3px 10px;border-radius:20px;margin-bottom:8px;}
+.event-banner .headline{font-size:17px;font-weight:700;margin:4px 0 4px;}
+.event-banner .sub{font-size:13px;color:var(--text-secondary);}
+.event-banner-img{margin-top:14px;border-radius:10px;overflow:hidden;background:#fafafa;
+  display:flex;justify-content:center;align-items:center;max-height:360px;}
+.event-banner-img img{max-width:100%;max-height:360px;width:auto;height:auto;object-fit:contain;display:block;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0;}
+.kpi{background:var(--card-bg);border-radius:12px;padding:16px;text-align:center;}
+.kpi .num{font-size:24px;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums;}
+.kpi .desc{font-size:11px;color:var(--text-secondary);margin-top:3px;}
+.hl{background:var(--card-bg);border-radius:12px;padding:18px 20px;margin:14px 0;}
+.hl .rank{font-size:15px;font-weight:700;color:var(--brand);margin-bottom:4px;}
+.hl .rank::before{content:"▸ ";color:var(--brand);}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+th{background:var(--card-bg);font-weight:600;}
+.price-table td:last-child{color:var(--brand);font-weight:600;}
+section.block{margin:26px 0;padding-top:18px;border-top:1px solid var(--line);}
+section.block:first-of-type{border-top:none;padding-top:0;}
+.sec-title{font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-title .emoji{font-size:20px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.hero-card{background:var(--card-bg);border-radius:12px;padding:14px 16px;}
+.hero-card .k{font-size:12px;color:var(--text-secondary);}
+.hero-card .v{font-size:15px;font-weight:600;margin-top:3px;}
+.product-img{width:100%;max-width:340px;border-radius:12px;overflow:hidden;background:#fafafa;
+  display:flex;justify-content:center;align-items:center;margin:0 auto 14px;}
+.product-img img{max-width:100%;max-height:420px;width:auto;height:auto;object-fit:contain;display:block;}
+.product-title{font-size:22px;font-weight:700;text-align:center;margin:6px 0 2px;}
+.product-title .badge{font-size:12px;background:#e7f1ea;color:var(--brand);padding:3px 10px;
+  border-radius:20px;font-weight:600;margin-left:8px;vertical-align:middle;}
+.rated{position:relative;cursor:help;border-bottom:1px dotted var(--border);
+  display:inline-block;max-width:100%;}
+.rated .tip{
+  position:absolute;left:50%;bottom:calc(100% + 9px);
+  transform:translateX(-50%) translateY(4px);
+  width:240px;white-space:normal;word-break:break-all;
+  background:#1d1d1f;color:#fff;font-size:12px;line-height:1.55;
+  text-align:left;padding:10px 12px;border-radius:9px;
+  opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;
+  z-index:9999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.22);font-weight:400;letter-spacing:0;}
+.rated .tip b{color:#ffd9a8;font-weight:600;}
+.rated .tip::after{content:'';position:absolute;top:100%;left:50%;
+  transform:translateX(-50%);border:6px solid transparent;border-top-color:#1d1d1f;}
+.rated:hover .tip,.rated:focus .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.delta{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;
+  padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.delta .ico{font-size:10px;line-height:1;}
+.delta.up{color:var(--up);background:var(--up-bg);}
+.delta.down{color:var(--down);background:var(--down-bg);}
+.delta.flat{color:var(--flat);background:var(--flat-bg);}
+.judge-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0;}
+.judge{background:var(--card-bg);border-radius:12px;padding:14px 16px;}
+.judge .h{font-weight:700;font-size:14px;margin-bottom:5px;}
+.judge .b{font-size:12.5px;color:var(--text-secondary);}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+.swot .q{background:var(--card-bg);border-radius:12px;padding:14px 16px;}
+.swot .q h4{margin:0 0 6px;font-size:14px;}
+.swot .q.s h4{color:var(--up);}
+.swot .q.w h4{color:var(--down);}
+.swot .q ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--text-secondary);}
+.nav-btns{display:flex;justify-content:space-between;margin-top:30px;}
+.nav-btns button{padding:9px 18px;border:1px solid var(--border);background:#fff;border-radius:20px;
+  cursor:pointer;font-size:13px;color:var(--text);}
+.note{background:#fff8e6;border:1px solid #f0e0b0;border-radius:10px;padding:12px 16px;
+  font-size:12.5px;color:#7a6510;margin:14px 0;line-height:1.7;}
+details{margin:12px 0;background:var(--card-bg);border-radius:12px;padding:6px 16px;}
+summary{cursor:pointer;font-weight:600;font-size:14px;padding:10px 0;}
+.chart-wrap{background:var(--card-bg);border-radius:12px;padding:16px;margin:12px 0;}
+.chart-wrap canvas{max-height:260px;}
+.src-list{font-size:12.5px;color:var(--text-secondary);line-height:1.9;}
+.src-list li{margin:2px 0;}
+@media(max-width:680px){
+  .kpi-row{grid-template-columns:repeat(2,1fr);}
+  .hero-grid,.judge-cards,.swot{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="0">📋 总览</button>
+  <button class="tab" data-tab="1">📱 荣耀 Robot Phone</button>
+</nav>
+
+<!-- ============ TAB 0 总览 ============ -->
+<div class="pane active" id="pane0">
+  <div class="report-cover">
+    <div class="brand">新品速递 · Product Flash</div>
+    <h1>发布会焦点速递 · 荣耀 Robot Phone</h1>
+    <div class="sub">荣耀 Robot Phone 全球新品发布会专题分析</div>
+    <div class="meta">
+      <span>报告日期：2026-08-13</span>
+      <span>涵盖品牌：荣耀 HONOR</span>
+      <span>品类：内置机械云台 AI 手机</span>
+      <span>新品数量：1 款（主角）+ 配套散热器</span>
+      <span>部门：硬件测试技术部</span>
+    </div>
+  </div>
+
+  <!-- ★ 壳子版本：发布会焦点横幅 -->
+  <div class="event-banner">
+    <span class="tag">发布会焦点</span>
+    <div class="headline">2026年8月12日晚，荣耀在广州举办「嗨！新朋友」荣耀 Robot Phone 全球新品发布会</div>
+    <div class="sub">荣耀正式推出首款机器人手机荣耀 Robot Phone——以<b>首创四自由度钛合金灵巧云台</b>赋予手机机器人级“身体”，以 <b>Agentic OS + YOYO Pro</b> 构建系统级 Agent 架构，并携手百年电影工业标杆 <b>ARRI</b> 将电影级影像带入移动终端，推动 AI 终端从“数字智能”迈向“具身智能”。新品 12+512GB 售 9999 元、16+1TB 售 12999 元，8/12 20:30 预售、8/18 10:08 开售。</div>
+    <div class="event-banner-img">
+      <img src="https://www-file.honor.com/content/dam/honor/cn/news/2026/honor-robot-phone-launch/image001.jpg" alt="荣耀 Robot Phone 全球新品发布会现场">
+    </div>
+  </div>
+
+  <div class="hl">
+    <div class="rank">看点一：荣耀正式开辟“Robot Phone”全新品类——机身内置机械云台，把 AI 智能体推向“机器人化”实体终端</div>
+    <div class="rank">看点二：影像规格拉满——2 亿像素云台主摄（1/1.28″）+ 2 亿像素潜望长焦（1/1.4″，2.7x 光变，200x 数码）+ 自研驭光 H1，并与 ARRI 联合共研电影级色彩</div>
+    <div class="rank">看点三：续航与性能旗舰级——7060mAh 青海湖电池 + 120W 有线 / 50W 无线，第五代骁龙 8 至尊版 + MagicOS 10（Android 16）</div>
+  </div>
+
+  <h3 style="margin-top:20px;">新品价格总表</h3>
+  <table class="price-table">
+    <tr><th>型号</th><th>版本</th><th>起售价</th><th>一句话定位</th><th>版本深度</th></tr>
+    <tr><td rowspan="2">荣耀 Robot Phone</td><td>12GB+512GB</td><td>9999 元</td><td rowspan="2">荣耀全新“机器人手机”品类首作，内置四自由度钛合金云台 + 双 2 亿影像</td><td rowspan="2">完整版（8 段）</td></tr>
+    <tr><td>16GB+1TB</td><td>12999 元</td></tr>
+    <tr><td>荣耀 Robot Phone 散热器</td><td>手机配件</td><td>待确认</td><td>为 Robot Phone 高负载 AI / 云台场景设计的专属散热外设</td><td>—（配件，随主品提及）</td></tr>
+  </table>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">9999</div><div class="desc">12+512GB 起售价（元）</div></div>
+    <div class="kpi"><div class="num">12999</div><div class="desc">16+1TB 顶配价（元）</div></div>
+    <div class="kpi"><div class="num">2亿×2</div><div class="desc">云台主摄 + 潜望长焦像素</div></div>
+    <div class="kpi"><div class="num">7060</div><div class="desc">电池容量 mAh</div></div>
+  </div>
+</div>
+
+<!-- ============ TAB 1 荣耀 Robot Phone 完整版 ============ -->
+<div class="pane" id="pane1">
+  <h2 class="product-title">荣耀 Robot Phone<span class="badge">完整版</span></h2>
+  <div style="text-align:center;color:var(--text-secondary);font-size:13px;margin-bottom:14px;">荣耀全新“机器人手机”品类首作 · 2026-08-12 广州「嗨！新朋友」全球新品发布会 · 来源：荣耀官网</div>
+
+  <div class="product-img">
+    <img src="https://hshop.honorfile.com/pimages//product/6942785112483/group//800_800_03237BB5BA8B1C5CF5081964B16890F7A5425165B73AB1F4mp.png" alt="荣耀 Robot Phone 产品主图">
+  </div>
+
+  <!-- ① Hero -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">🎯</span>① 核心信息</div>
+    <div class="hero-grid">
+      <div class="hero-card"><div class="k">品类定位</div><div class="v">内置四自由度钛合金机械云台的 AI / Robot 形态智能手机（全新独立产品线）</div></div>
+      <div class="hero-card"><div class="k">发布 / 发售</div><div class="v">2026-08-12 广州发布；8/12 20:30 预售，8/18 10:08 开售</div></div>
+      <div class="hero-card"><div class="k">起售价</div><div class="v">12+512GB 9999 元 / 16+1TB 12999 元</div></div>
+      <div class="hero-card"><div class="k">处理器</div><div class="v">第五代骁龙® 8 至尊版（2×Prime 4.6GHz + 6×Performance 3.62GHz）/ Adreno™ 840</div></div>
+      <div class="hero-card"><div class="k">屏幕</div><div class="v">6.31″ OLED，FHD+ 1216×2640，真 10.7 亿色 DCI-P3，HDR 峰值 6800nits / 全局 2000nits，巨犀玻璃</div></div>
+      <div class="hero-card"><div class="k">电池 / 充电</div><div class="v">7060mAh（青海湖电池）+ 120W 有线 / 50W 无线 + 无线反向充电</div></div>
+      <div class="hero-card"><div class="k">影像系统</div><div class="v">2 亿云台主摄（1/1.28″，F1.6，OIS）+ 2 亿潜望长焦（1/1.4″，2.7x 光变，200x 数码）+ 5000 万超广角；自研驭光 H1 芯片；ARRI 联合共研</div></div>
+      <div class="hero-card"><div class="k">机械云台</div><div class="v">四自由度钛合金灵巧云台：三轴 ±0.005mm 精度、尺寸缩减 65%、电机仅 2.6g；盾构钢翻转电机 120N·m/L；100+ 零件 / 60+ 工艺 / 100+ 专利</div></div>
+      <div class="hero-card"><div class="k">尺寸 / 重量 / 配色</div><div class="v">151.43 × 72.86 × 9.59 mm，约 248g；月影灰 / 星轨银</div></div>
+      <div class="hero-card"><div class="k">系统 / 智能体</div><div class="v">MagicOS 10（Android 16）· Agentic OS + YOYO Pro · 联合千问大模型 · YOYO 机器人模式</div></div>
+    </div>
+  </section>
+
+  <!-- ② Top5 升级 -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">🚀</span>② Top 5 升级（基于官网规格）</div>
+    <div class="judge-cards">
+      <div class="judge"><div class="h">1. 实体机械云台 <span class="delta up">▲ 新品类<span class="ico">▲</span></span></div><div class="b">首创四自由度钛合金灵巧云台，加工精度 ±0.005mm、整体尺寸缩减 65%、电机仅 2.6g；盾构钢翻转电机 120N·m/L 扭矩密度，三轴最大 360°/s。“Robot Phone”命名落点在实体机器人结构。</div></div>
+      <div class="judge"><div class="h">2. 双 2 亿 + ARRI 电影影像 <span class="delta up">▲ 旗舰<span class="ico">▲</span></span></div><div class="b">2 亿云台主摄（1/1.28″，F1.6，3 轴机械防抖）+ 2 亿潜望长焦（1/1.4″，2.7x 光变，200x 数码）+ 自研驭光 H1；与 ARRI 共研 LogC3、11 种 ARRI Look、专属 ARRI 电影模式（2.39:1）。</div></div>
+      <div class="judge"><div class="h">3. Agentic OS + YOYO 机器人模式 <span class="delta up">▲ 新<span class="ico">▲</span></span></div><div class="b">首个系统级 Agent 架构，首发 YOYO Pro；多模态具身感知（手势/拟人表情/随音而舞）、一句话自动执行跨应用任务、YOYO 技能商店开放 100+ 系统能力。</div></div>
+      <div class="judge"><div class="h">4. 超大电池 + 极速充 <span class="delta up">▲ 旗舰<span class="ico">▲</span></span></div><div class="b">7060mAh 青海湖电池，120W 有线 + 50W 无线 + 无线反充，支撑云台 / 持续 AI 高负载场景。</div></div>
+      <div class="judge"><div class="h">5. 旗舰连接与防护 <span class="delta up">▲ 旗舰<span class="ico">▲</span></span></div><div class="b">Wi-Fi 7、蓝牙 6.0、5G 四天线 MIMO；IP54 防尘抗水；巨犀玻璃；4320Hz 超高频 PWM 护眼屏。</div></div>
+    </div>
+  </section>
+
+  <!-- ③ 参数 Diff -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">📊</span>③ 参数 Diff（本品为独有形态，暂无对标竞品）</div>
+    <div class="note">因本品为“内置机械云台”这一近乎独有的形态，故暂无对标竞品。本 Diff 表以荣耀 Robot Phone 自身关键规格作呈现。</div>
+    <table>
+      <tr><th>指标</th><th>荣耀 Robot Phone（2026）</th></tr>
+      <tr><td>形态差异点</td><td>四自由度钛合金机械云台 + 翻转电机</td></tr>
+      <tr><td>处理器</td><td>第五代骁龙 8 至尊版 / Adreno 840</td></tr>
+      <tr><td>主摄</td><td>2 亿 1/1.28″ F1.6 云台主摄 OIS</td></tr>
+      <tr><td>长焦</td><td>2 亿 1/1.4″ 潜望 2.7x / 200x</td></tr>
+      <tr><td>电池 / 充电</td><td>7060mAh / 120W 有线 / 50W 无线</td></tr>
+      <tr><td>屏幕</td><td>6.31″ OLED 1216×2640 6800nits</td></tr>
+      <tr><td>起售价</td><td>9999 元（12+512）/ 12999 元（16+1TB）</td></tr>
+    </table>
+  </section>
+
+  <!-- ④ AI 自动总结 -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">🧠</span>④ AI 自动总结（4 判断卡片）</div>
+    <div class="judge-cards">
+      <div class="judge"><div class="h">🟢 战略意义</div><div class="b">荣耀押注“Robot Phone”新品类，把“机器人化”落到机身内置机械云台这一实体结构，是手机行业从“AI 软件”走向“实体智能体”的标志性动作，抢先占位心智。</div></div>
+      <div class="judge"><div class="h">🟡 影像定位</div><div class="b">双 2 亿（主摄 + 潜望长焦）+ 自研驭光 H1 + 与 ARRI 共研 LogC3 / 11 种 Look / 电影模式，影像与电影调色堆料达到专业级，云台是差异化核心。</div></div>
+      <div class="judge"><div class="h">🔵 体验取舍</div><div class="b">约 248g 重量、9.59mm 厚度、IP54（非专业防水）说明为云台结构牺牲了轻薄与防护；7060mAh 大电池部分抵消了云台 / 高负载功耗；9999 元起定价锚定超旗舰。</div></div>
+      <div class="judge"><div class="h">🟠 风险点</div><div class="b">新形态带来认知与耐用性考验（云台机械结构寿命、IP54 限制）；9999 元起溢价接受度存疑；专属散热器暗示高负载发热压力；YOYO 机器人模式的实用价值待实测验证。</div></div>
+    </div>
+  </section>
+
+  <!-- ⑤ 与上代变化 -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">📈</span>⑤ 与上代变化</div>
+    <p style="font-size:13.5px;">荣耀 Robot Phone 为<b>全新品类首作</b>，不存在“上一代”直接可比对象。其“变化”应理解为相对荣耀既有手机矩阵（Magic / 数字 / WIN 等）的<b>新增能力维度</b>：引入机身内置<b>四自由度钛合金机械云台（三轴防抖 + 翻转电机）</b>这一实体机器人化结构，并以双 2 亿影像 + 7060mAh 大电池 + Agentic OS / YOYO 机器人模式支撑持续 AI / 云台高负载。具体量化指标（相对 Magic 系列的代际差、影像实拍提升）需待官方参数公布与实测后补充双柱对比图。</p>
+  </section>
+
+  <!-- ⑥ 竞品 SWOT -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">🏆</span>⑥ 竞品 SWOT（荣耀 Robot Phone）</div>
+    <div class="swot">
+      <div class="q s"><h4>优势 S</h4><ul>
+        <li>品类命名 + 实体云台先发，抢占“机器人手机”心智</li>
+        <li>双 2 亿影像 + 自研驭光 H1，硬件堆料旗舰级</li>
+        <li>7060mAh + 120W/50W 充，续航与回血无忧</li>
+        <li>第五代骁龙 8 至尊版 + MagicOS 10 YOYO 智能体底座</li>
+      </ul></div>
+      <div class="q w"><h4>劣势 W</h4><ul>
+        <li>约 248g / 9.59mm，厚重；IP54 非专业防水</li>
+        <li>机械云台结构带来耐用性 / 维修成本隐忧</li>
+      </ul></div>
+      <div class="q s"><h4>机会 O</h4><ul>
+        <li>端侧 AI 智能体 + 稳定云台影像处于行业爆发前夜</li>
+        <li>可与荣耀全场景设备联动放大价值</li>
+        <li>国补等政策利好高端 AI 终端</li>
+      </ul></div>
+      <div class="q w"><h4>威胁 T</h4><ul>
+        <li>华为/小米/OPPO 同代影像旗舰正面竞争</li>
+        <li>若云台体验无突破，易被视作营销概念</li>
+        <li>用户对“机器人手机”新品类认知与溢价存疑</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ⑦ 全量参数折叠 -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">📋</span>⑦ 全量参数（折叠 · 来源：荣耀官网）</div>
+    <details>
+      <summary>展开 / 收起 全量参数表</summary>
+      <table>
+        <tr><th>参数项</th><th>数值</th><th>来源 / 状态</th></tr>
+        <tr><td>产品名称</td><td>荣耀 Robot Phone</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>发布 / 发售</td><td>2026-08-12 广州「嗨！新朋友」发布会；8/12 20:30 预售，8/18 10:08 开售</td><td>荣耀官网新闻稿（已确认）</td></tr>
+        <tr><td>尺寸</td><td>151.43 × 72.86 × 9.59 mm</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>重量</td><td>约 248g（含电池）</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>配色</td><td>月影灰 / 星轨银</td><td>荣耀官网新闻稿（已确认）</td></tr>
+        <tr><td>机械云台</td><td>四自由度钛合金灵巧云台：三轴 ±0.005mm 精度、尺寸缩减 65%、电机仅 2.6g；盾构钢翻转电机 120N·m/L；100+ 零件 / 60+ 工艺 / 100+ 专利；三轴最大 360°/s</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>屏幕</td><td>6.31″ OLED，FHD+ 1216×2640，真 10.7 亿色 DCI-P3，HDR 峰值 6800nits / 全局 2000nits，4320Hz PWM，巨犀玻璃，10 点触控</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>处理器</td><td>第五代骁龙 8 至尊版（2×Prime 4.6GHz + 6×Performance 3.62GHz）/ Adreno 840</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>系统</td><td>MagicOS 10（Android 16）</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>存储</td><td>12GB+512GB / 16GB+1TB</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>后置主摄</td><td>2 亿像素灵巧云台主摄：3 轴机械防抖，1/1.28″，F1.6，OIS</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>后置长焦</td><td>2 亿像素潜望式：1/1.4″，F2.6，OIS，2.7x 光变，最大 200x 数码</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>后置超广角</td><td>5000 万像素，F2.0，最大 122°，2.5cm 微距</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>影像芯片 / 电影共研</td><td>自研 荣耀驭光 H1；与 ARRI 共研 LogC3、11 种 ARRI Look、ARRI 电影模式（2.39:1）</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>前置</td><td>5000 万广角前摄，F2.0，最大 90°，2D 人脸</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>电池</td><td>7060mAh（典型值）/ 6880mAh（额定），青海湖电池</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>充电</td><td>120W 有线 / 50W 无线 / 无线反向充电</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>防尘抗水</td><td>IP54</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>网络</td><td>5G（移动/电信/联通/广电 5GA），4×4 MIMO，载波聚合</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>WLAN / 蓝牙</td><td>Wi-Fi 7（802.11be）/ 蓝牙 6.0</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>定位</td><td>北斗四频 / GPS 双频 / GLONASS / Galileo 三频 / QZSS / NavIC 等</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>传感器 / NFC</td><td>重力/红外/指纹/霍尔/加速度/陀螺仪/指南针/环境光/接近光；NFC 读卡+卡模拟</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>接口</td><td>USB Type-C，USB 3.2 GEN1，支持 DP1.2；红外遥控</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>包装清单</td><td>手机、充电器、Type-C 线、取卡针、磁吸保护壳、挂绳、磁吸支架、新机权益卡、TP 保护膜（出厂贴）</td><td>荣耀官网（已确认）</td></tr>
+        <tr><td>起售价</td><td>12+512GB 9999 元 / 16+1TB 12999 元</td><td>荣耀官网新闻稿（已确认）</td></tr>
+        <tr><td>配套配件</td><td>荣耀 Robot Phone 散热器</td><td>荣耀官网配件页（已确认）</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ⑧ 来源 -->
+  <section class="block">
+    <div class="sec-title"><span class="emoji">📎</span>⑧ 来源</div>
+    <ul class="src-list">
+      <li><b>荣耀官网产品规格页（本报告全部规格数值来源）</b>：https://www.honor.com/cn/phones/honor-robot-phone/ （由用户复制粘贴规格文本，逐项回填）</li>
+      <li>荣耀官网产品列表页：https://www.honor.com/cn/phones/ （确认 Robot Phone 存在及产品线归属）</li>
+      <li>荣耀 Robot Phone 全球新品发布会活动页：https://www.honor.com/cn/activity/honor-robotphone-launch/ （确认发布会名称与日期）</li>
+      <li>荣耀新闻页：https://www.honor.com/cn/news/ （确认活动入口）</li>
+      <li>知乎《2026年荣耀手机各个系列介绍及选购指南（8月份更新）》2026-08-12 更新（确认 8/12 发布“荣耀机器人手机”及产品线定位）</li>
+      <li>荣耀 Robot Phone 散热器配件页：https://www.honor.com/cn/accessories/honor-robot-phone-radiator/ （确认配套外设）</li>
+    </ul>
+  </section>
+
+  <div class="nav-btns">
+    <button onclick="switchTab(0)">← 返回总览</button>
+    <button disabled style="opacity:.4;">下一品 →</button>
+  </div>
+</div>
+
+<script>
+function switchTab(n){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelector('[data-tab="'+n+'"]').classList.add('active');
+  document.getElementById('pane'+n).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.tab').forEach(b=>
+  b.addEventListener('click',()=>switchTab(+b.dataset.tab)));
+</script>
+</body>
+</html>
