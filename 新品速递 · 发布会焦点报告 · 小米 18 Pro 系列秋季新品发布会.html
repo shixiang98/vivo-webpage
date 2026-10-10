@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>新品速递 · 发布会焦点报告 · 小米 18 Pro 系列秋季新品发布会</title>
+<style>
+:root{--bg:#f8f8f6;--card-bg:#ffffff;--text:#18181a;--text-secondary:#6b6b70;--border:#e4e4e8;--line:#ececf0;--brand:#e8590c;--up:#1a6e44;--up-bg:#e6f4ec;--down:#9a3520;--down-bg:#fceee9;--flat:#5a5a62;--flat-bg:#f0f0f3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;font-size:15px;line-height:1.6}
+.tabs{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1.5px solid var(--border);display:flex;padding:0 28px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:14px 22px;border:none;background:none;cursor:pointer;font-size:14px;font-weight:500;color:var(--text-secondary);border-bottom:2.5px solid transparent;white-space:nowrap}
+.tab.active{color:var(--text);border-bottom-color:var(--brand);font-weight:700}
+.pane{display:none;max-width:1060px;margin:0 auto;padding:36px 24px 64px}
+.pane.active{display:block}
+.report-cover{padding:36px 4px 28px;margin-bottom:32px;border-bottom:1px solid var(--line)}
+.report-cover .cover-brand{font-size:11px;font-weight:700;color:var(--text-secondary);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.report-cover .cover-title{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--text);margin-bottom:16px}
+.report-cover .cover-meta{font-size:13px;color:var(--text-secondary);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.report-cover .cover-sep{opacity:.4}
+.report-cover .cover-date{font-weight:600;color:var(--text)}
+.event-banner{background:linear-gradient(135deg,#e8590c 0%,#8a3200 100%);border-radius:18px;padding:28px 30px;margin-bottom:28px;display:flex;gap:24px;align-items:center;color:#fff}
+.event-banner-text{flex:1 1 auto;min-width:0}
+.event-banner-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.78;margin-bottom:10px}
+.event-banner-headline{font-size:23px;font-weight:800;line-height:1.32;letter-spacing:-.01em;margin-bottom:8px}
+.event-banner-sub{font-size:13.5px;opacity:.86;line-height:1.6}
+.event-banner-img{flex:0 0 260px;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;min-height:150px;padding:8px}
+.event-banner-img img{max-width:100%;max-height:200px;object-fit:contain;border-radius:8px;display:block}
+.event-banner-img img[src=""]{display:none}
+.event-banner-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;font-size:12px;text-align:center;opacity:.85;width:100%;min-height:130px}
+.event-banner-img img:not([src=""])+.event-banner-placeholder{display:none}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.kpi{background:var(--card-bg);border-radius:12px;padding:18px 16px;border:1px solid var(--border);text-align:center}
+.kpi .num{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px;color:var(--brand);font-variant-numeric:tabular-nums}
+.kpi .desc{font-size:11px;color:var(--text-secondary)}
+.hl-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px}
+.hl{background:var(--card-bg);border-radius:12px;padding:18px 20px;border:1px solid var(--border)}
+.hl .rank{font-size:26px;font-weight:800;margin-bottom:6px;color:var(--brand)}
+.hl h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.hl p{font-size:12.5px;color:var(--text-secondary);line-height:1.5}
+.section-title{font-size:12px;font-weight:700;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase;margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.product-title{font-size:26px;font-weight:800;letter-spacing:-.01em;color:var(--text);margin:8px 0 18px;line-height:1.25}
+.product-img-wrap{margin-bottom:20px;border-radius:14px;overflow:hidden;background:var(--card-bg);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px;padding:14px}
+.product-img-wrap img{max-width:100%;max-height:340px;object-fit:contain;border-radius:8px;display:block}
+.product-img-wrap img[src=""]{display:none}
+.product-img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text-secondary);font-size:13px;text-align:center;width:100%;min-height:160px}
+.product-img-wrap img:not([src=""])+.product-img-placeholder{display:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.hero-card{background:var(--card-bg);border-radius:14px;padding:22px 20px;border:1px solid var(--border)}
+.hero-card h3{font-size:15px;font-weight:700;margin-bottom:14px;color:var(--text-secondary)}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px;gap:10px}
+.spec-row:last-child{border:none}
+.spec-row .k{color:var(--text-secondary);flex:0 0 auto}
+.spec-row .v{font-weight:600;text-align:right;max-width:64%}
+.delta{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap}
+.delta.up{color:var(--up);background:var(--up-bg)}
+.delta.down{color:var(--down);background:var(--down-bg)}
+.delta.flat{color:var(--flat);background:var(--flat-bg)}
+.diff-table{width:100%;border-collapse:collapse;background:var(--card-bg);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;font-size:13.5px}
+.diff-table th{background:#f3f3f5;padding:10px 14px;text-align:left;font-weight:700;color:var(--text-secondary);font-size:12px}
+.diff-table td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:middle}
+/* ★ 列分隔竖线：多列表格各列之间加竖线，避免列内容视觉融合 */
+.diff-table th,.diff-table td,.news-table th,.news-table td{border-left:1px solid var(--border)}
+.diff-table th:first-child,.diff-table td:first-child,.news-table th:first-child,.news-table td:first-child{border-left:none}
+/* ★ 对比表对齐：单元格文本居中；首列（维度/参数名）不换行，保持一格一行 */
+.diff-table th,.diff-table td{text-align:center}
+.diff-table th:first-child,.diff-table td:first-child{white-space:nowrap}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.ai-card{background:var(--card-bg);border-radius:12px;padding:18px;border:1px solid var(--border)}
+.ai-card .label{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--text-secondary);margin-bottom:8px}
+.ai-card p{font-size:13.5px;line-height:1.55}
+.top5{margin-bottom:28px}
+.t5{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.t5 .n{font-size:20px;font-weight:800;color:var(--brand);flex:0 0 auto;line-height:1.2}
+.t5 .b{font-size:13.5px;font-weight:700;margin-bottom:2px}
+.t5 .d{font-size:12.5px;color:var(--text-secondary);line-height:1.5}
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:12px;overflow:hidden;margin-bottom:28px;border:1px solid var(--border)}
+.swot-cell{padding:18px 16px;background:var(--card-bg)}
+.swot-cell:nth-child(1){background:#e8f4ee}
+.swot-cell:nth-child(2){background:#fce9e6}
+.swot-cell:nth-child(3){background:#e8eeff}
+.swot-cell:nth-child(4){background:#fff8e6}
+.swot-cell h4{font-size:12px;font-weight:800;letter-spacing:.06em;margin-bottom:8px}
+.swot-cell ul{list-style:none;padding:0}
+.swot-cell li{font-size:13px;padding:3px 0 3px 14px;position:relative;line-height:1.4}
+.swot-cell li::before{content:"▸";position:absolute;left:0;font-size:10px;top:5px}
+.rated{position:relative;cursor:help;border-bottom:1px dotted var(--border);display:inline-block;max-width:100%}
+.rated .tip{position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%) translateY(4px);width:240px;white-space:normal;word-break:break-all;background:#1d1d1f;color:#fff;font-size:12px;line-height:1.55;text-align:left;padding:10px 12px;border-radius:9px;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease;z-index:9999;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.22);font-weight:400}
+.rated:hover .tip,.rated:focus .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.rated.tip-left .tip{left:auto;right:0;transform:translateX(0) translateY(4px)}
+.rated.tip-left:hover .tip{transform:translateX(0) translateY(0)}
+.stars{color:#f5a623;font-size:14px;letter-spacing:1px}
+.notice{background:#fffbee;border:1px solid #f5e07a;border-radius:10px;padding:14px 18px;font-size:13px;color:#5a4a00;margin-bottom:20px}
+details{margin-bottom:28px}
+summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--text-secondary);padding:10px 0}
+.param-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card-bg);border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-top:10px}
+.param-table td{padding:8px 14px;border-top:1px solid var(--line)}
+.param-table tr:first-child td{border:none}
+.param-table td:first-child{color:var(--text-secondary);width:38%}
+.news-table{width:100%;border-collapse:collapse;background:var(--card-bg);border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;font-size:13.5px}
+.news-table th{background:#f3f3f5;padding:10px 14px;text-align:left;font-weight:700;color:var(--text-secondary);font-size:12px}
+.news-table td{padding:10px 14px;border-top:1px solid var(--line)}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.chart-wrap{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:18px}
+.chart-wrap h4{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text-secondary)}
+.evi-table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--card-bg);border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:28px}
+.evi-table td{padding:7px 14px;border-top:1px solid var(--line)}
+.evi-table tr:first-child td{border:none}
+.evi-table td:first-child{color:var(--text-secondary);width:46%}
+.src-list{font-size:12.5px;color:var(--text-secondary);line-height:1.9}
+@media(max-width:640px){.report-cover .cover-title{font-size:23px}.hero-grid,.kpi-row,.hl-grid,.ai-grid,.swot,.chart-grid{grid-template-columns:1fr}.pane{padding:20px 16px 48px}.tabs{padding:0 12px}.event-banner{flex-direction:column;padding:22px 20px}.event-banner-img{flex:none;width:100%}.event-banner-headline{font-size:19px}}
+</style>
+</head>
+<body>
+<nav class="tabs">
+  <button class="tab active" data-tab="0">📋 总览</button>
+  <button class="tab" data-tab="1">📱 小米 18 Pro</button>
+  <button class="tab" data-tab="2">📱 小米 18 Pro Max</button>
+  <button class="tab" data-tab="3">📊 全系横向对比</button>
+</nav>
+
+<div class="pane active" id="pane0">
+  <div class="report-cover">
+    <div class="cover-brand">新品速递 · Product Flash</div>
+    <h1 class="cover-title">新品速递 · 发布会焦点报告 · 小米 18 Pro 系列秋季新品发布会</h1>
+    <div class="cover-meta">
+      <span class="cover-date">发布会日期 2026-09-23 19:00</span>
+      <span class="cover-sep">·</span>
+      <span class="cover-count">纳入 2 款机型（另含透明特别版）</span>
+      <span class="cover-sep">·</span>
+      <span class="cover-dept">硬件测试技术部</span>
+    </div>
+  </div>
+
+  <div class="event-banner">
+    <div class="event-banner-text">
+      <div class="event-banner-eyebrow">📍 本场发布会</div>
+      <h2 class="event-banner-headline">2026 年 9 月 23 日 19:00，小米举行「小米 18 Pro 系列秋季新品发布会」（线上同步直播）</h2>
+      <p class="event-banner-sub">卢伟冰主讲、雷军台下观礼；一次性发布小米 18 Pro 与小米 18 Pro Max 双旗舰，另有透明特别版；首发 2nm 旗舰平台与全新澎湃 OS4，全系标配 AI 百变背屏与硬件级防窥</p>
+    </div>
+    <div class="event-banner-img">
+      <img src="http://imgcdn.anzhuo.cn/post/2026-09-24/04260420-b76b-11f1-ac94-115d3f50a91e.jpg-hl" alt="小米 18 Pro 系列正式发布"/>
+      <div class="event-banner-placeholder">
+        <div class="icon">🎬</div>
+        <div>发布会图片待填入</div>
+        <div class="hint">打开此 HTML，找到 event-banner-img 里的<br>src="" 粘贴图片直链后保存刷新</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">2</div><div class="desc">手机机型数（Pro / Pro Max）</div></div>
+    <div class="kpi"><div class="num">¥5,999</div><div class="desc">系列起售价（Pro 12+256）</div></div>
+    <div class="kpi"><div class="num">¥10,999</div><div class="desc">最高价（Pro Max 透明特别版）</div></div>
+    <div class="kpi"><div class="num">8500mAh</div><div class="desc">Pro Max 电池容量</div></div>
+  </div>
+
+  <div class="section-title">本场最大看点</div>
+  <div class="hl-grid">
+    <div class="hl"><div class="rank">01</div><h4>直板旗舰首破万元：透明特别版登场</h4><p>小米 18 Pro 透明特别版（16+1TB）¥9,999、Pro Max 透明特别版 ¥10,999，雷军亲自宣传"惊艳亮相"——直板旗舰正式进入万元档。</p></div>
+    <div class="hl"><div class="rank">02</div><h4>全系 2nm 平台 + 双 2 亿徕卡影像</h4><p>首发 2nm 新一代旗舰平台；徕卡双 2 亿影像（2 亿主摄 1/1.28" + 2 亿 3.2× 潜望长焦，支持 12cm 长焦微距），Pro 与 Pro Max 影像规格一致。</p></div>
+    <div class="hl"><div class="rank">03</div><h4>AI 百变背屏 + 硬件级防窥</h4><p>全系标配 AI 百变背屏与硬件级防窥屏，0.99mm 四等边；Pro Max 电池升至 8500mAh 金沙江电池，Pro 为 7000mAh。</p></div>
+  </div>
+
+  <div class="section-title">新品价格总表</div>
+  <table class="news-table">
+    <thead><tr><th>型号</th><th>品类</th><th>起售价</th><th>一句话定位</th><th>版本深度</th></tr></thead>
+    <tbody>
+      <tr><td>小米 18 Pro</td><td>手机</td><td>¥5,999（12+256，国补到手 ¥5,499）</td><td>小尺寸全能旗舰，2nm + 徕卡双 2 亿 + 背屏</td><td>完整版（8 段）</td></tr>
+      <tr><td>小米 18 Pro Max</td><td>手机</td><td>¥6,999（12+256）</td><td>大屏顶配旗舰，8500mAh 金沙江电池</td><td>完整版（8 段）</td></tr>
+      <tr><td>小米 18 Pro 透明特别版</td><td>手机（特别版）</td><td>¥9,999（16+1TB）</td><td>透明设计特别版，备货有限</td><td>并入 Pro 页说明</td></tr>
+      <tr><td>小米 18 Pro Max 透明特别版</td><td>手机（特别版）</td><td>¥10,999（16+1TB）</td><td>直板旗舰首破万元门槛</td><td>并入 Pro Max 页说明</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">报告口径说明</div>
+  <div class="notice">按 v1.16 对比方向规则，本场新品（小米 18 Pro / Pro Max）为**对标对象**，**本品为 vivo 系同年同级别机型**——小米 18 Pro（小尺寸 Pro）对标 vivo X500 Pro（2026，¥6,499 起），小米 18 Pro Max（大屏超大杯）对标 vivo X500 Pro Max（2026，¥6,999 起）。下文 Diff 表、SWOT 与 AI 总结均以 vivo 机型为"本品"立场撰写。小米 18 标准版本次未发布（官方称延后至 12 月），故不在本报告范围。</div>
+</div>
+<!-- ============ TAB 1 小米 18 Pro ============ -->
+<div class="pane" id="pane1">
+  <h2 class="product-title">小米 18 Pro</h2>
+  <div class="product-img-wrap">
+    <img src="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1790062610.67453109.png" alt="小米 18 Pro（官方产品图）" onerror="this.onerror=null;this.src='http://i1.hdslb.com/bfs/archive/7ea98c97c1d06b63722bbba67ddf7a2e5c0c5d53.jpg@1200w_630h'" />
+    <div class="product-img-placeholder"><div class="icon">🖼️</div><div>产品图待填入</div></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-card">
+      <h3>核心规格</h3>
+      <div class="spec-row"><span class="k">产品定位</span><span class="v">小尺寸全能旗舰</span></div>
+      <div class="spec-row"><span class="k">发布 / 开售</span><span class="v">2026-09-23 19:00 发布（线上同步直播）</span></div>
+      <div class="spec-row"><span class="k">售价</span><span class="v">12+256 ¥5,999（国补到手 ¥5,499）；透明特别版 16+1TB ¥9,999</span></div>
+      <div class="spec-row"><span class="k">处理器</span><span class="v">2nm 新一代旗舰平台（骁龙 8E6 口径）</span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v">RGB OLED 小直屏 · 超级像素 2K · M11 发光体系 · LTPO · BT.2020 · 0.99mm 四等边 · 硬件级防窥</span></div>
+      <div class="spec-row"><span class="k">后置影像</span><span class="v">徕卡双 2 亿：2 亿主摄 1/1.28" + 2 亿 3.2× 潜望长焦（1/1.56"，12cm 长焦微距）+ 5000 万 17mm 超广角</span></div>
+      <div class="spec-row"><span class="k">电池 / 充电</span><span class="v">7000mAh 金沙江电池 · 100W 有线 + 50W 无线</span></div>
+      <div class="spec-row"><span class="k">特色</span><span class="v">AI 百变背屏 · 7514 X 轴马达 · 3D 超声波指纹</span></div>
+      <div class="spec-row"><span class="k">防护 / 系统</span><span class="v">IP66 / IP68 / IP69 · 澎湃 OS4（首发，内置 MiMo 大模型）</span></div>
+    </div>
+    <div class="hero-card">
+      <h3>综合评分（vivo 视角）</h3>
+      <div class="spec-row"><span class="k">参数竞争力</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">¥5,999 即给到 2nm 平台、双 2 亿徕卡影像、7000mAh、100W/50W 与背屏，同价位参数密度极高。</span></span></span></div>
+      <div class="spec-row"><span class="k">价格冲击</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">比 vivo X500 Pro（¥6,499 起）低 500 元，国补到手 ¥5,499 更直接压入 X500 的价格带。</span></span></span></div>
+      <div class="spec-row"><span class="k">可验证性</span><span class="v"><span class="rated tip-left"><span class="stars">★★★☆☆</span><span class="tip">屏幕峰值亮度、机身重量厚度、屏幕具体分辨率数值等未在发布信息中明确，需等待第三方实测。</span></span></span></div>
+      <div class="spec-row"><span class="k">背屏实用性</span><span class="v"><span class="rated tip-left"><span class="stars">★★★☆☆</span><span class="tip">AI 百变背屏为新增形态卖点，实际使用频次、功耗与耐用性尚待市场验证。</span></span></span></div>
+    </div>
+  </div>
+
+  <div class="section-title">🚀 Top 5 升级 / 亮点</div>
+  <div class="top5">
+    <div class="t5"><div class="n">1</div><div><div class="b">徕卡双 2 亿影像</div><div class="d">2 亿主摄（1/1.28"）+ 2 亿 3.2× 潜望长焦（1/1.56"，12cm 长焦微距），Pro 与 Pro Max 影像规格一致。</div></div></div>
+    <div class="t5"><div class="n">2</div><div><div class="b">2nm 新一代旗舰平台 + 澎湃 OS4</div><div class="d">首发 2nm 平台与全新澎湃 OS4，内置 MiMo 大模型，并支持与苹果设备互联。</div></div></div>
+    <div class="t5"><div class="n">3</div><div><div class="b">AI 百变背屏 + 硬件级防窥</div><div class="d">全系标配背屏与硬件级防窥屏，构成线下最直观的差异化卖点。</div></div></div>
+    <div class="t5"><div class="n">4</div><div><div class="b">7000mAh + 100W / 50W</div><div class="d">小尺寸机身内给到 7000mAh 金沙江电池，双快充规格齐全。</div></div></div>
+    <div class="t5"><div class="n">5</div><div><div class="b">0.99mm 四等边 + 2K LTPO</div><div class="d">RGB OLED 超级像素 2K 屏、M11 发光体系、LTPO 与 0.99mm 四等边，屏占比与观感规格拉满。</div></div></div>
+  </div>
+
+  <div class="section-title">📊 参数 Diff — 本品 vivo X500 Pro（2026，¥6,499 起） vs 对标 小米 18 Pro（2026，¥5,999 起）</div>
+  <table class="diff-table">
+    <thead><tr><th>维度</th><th>本品 vivo X500 Pro</th><th>对标 小米 18 Pro</th><th>差异判断（vivo 视角）</th></tr></thead>
+    <tbody>
+      <tr><td>起售价</td><td>¥6,499（12+256）</td><td>¥5,999（12+256，国补到手 ¥5,499）</td><td><span class="delta down">▼ 贵 500 元，国补后价差扩大至 1,000 元</span></td></tr>
+      <tr><td>处理器</td><td>蓝晶 × 天玑 9600 Pro（2nm）</td><td>2nm 新一代旗舰平台（骁龙 8E6 口径）</td><td><span class="delta flat">＝ 同为 2nm 旗舰平台，路线不同</span></td></tr>
+      <tr><td>电池</td><td>6510mAh 蓝海电池</td><td>7000mAh 金沙江电池</td><td><span class="delta down">▼ 少 490mAh</span></td></tr>
+      <tr><td>有线快充</td><td>90W</td><td>100W</td><td><span class="delta down">▼ 落后 10W</span></td></tr>
+      <tr><td>无线快充</td><td>40W</td><td>50W</td><td><span class="delta down">▼ 落后 10W</span></td></tr>
+      <tr><td>屏幕</td><td>6.36" 蔡司大师色彩屏 · 1–144Hz · 459PPI · 100% P3</td><td>RGB OLED 小直屏 · 超级像素 2K · LTPO · 0.99mm 四等边</td><td><span class="delta down">▼ 分辨率与边框规格落后</span></td></tr>
+      <tr><td>峰值亮度</td><td>4500nit（20% APL）/ 2000nit（全局）</td><td>待确认</td><td><span class="delta flat">＝ 对方未公布，暂不可比</span></td></tr>
+      <tr><td>影像</td><td>蔡司（超视野超广角 5000 万 · 1/2.75" · f/2.0）</td><td>徕卡双 2 亿（2 亿主摄 1/1.28" + 2 亿潜望 3.2×）</td><td><span class="delta down">▼ 像素与长焦规格差距明显</span></td></tr>
+      <tr><td>形态特色</td><td>无背屏</td><td>AI 百变背屏 + 硬件级防窥</td><td><span class="delta down">▼ 缺少可讲的新形态卖点</span></td></tr>
+      <tr><td>防护</td><td>IP68 + IP69</td><td>IP66 / IP68 / IP69</td><td><span class="delta flat">＝ 防护档位相当</span></td></tr>
+      <tr><td>系统</td><td>OriginOS 7</td><td>澎湃 OS4</td><td><span class="delta flat">＝ 各有生态</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">🧠 AI 自动总结（本品：vivo X500 Pro）</div>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="label">📣 最大卖点</div><p>vivo X500 Pro 的 6.36 英寸小屏手感 + 蔡司影像调校 + 4500nit（20% APL）峰值亮度口径 + IP68/IP69 防护，在"小尺寸旗舰"这一细分里仍有成熟口碑与体验优势。</p></div>
+    <div class="ai-card"><div class="label">⚠️ 最大短板</div><p>贵 500 元（国补后 1,000 元）、电池少 490mAh、有线/无线快充双双落后 10W，且影像像素与背屏形态两项被完全压制——参数表几乎全面下风。</p></div>
+    <div class="ai-card"><div class="label">🎯 最适合人群</div><p>重视小屏手感、成片质感与系统长期体验的用户仍适配 vivo X500 Pro；以参数、像素与背屏可玩性为决策点的用户会明显流向小米 18 Pro。</p></div>
+    <div class="ai-card"><div class="label">🔮 市场判断</div><p>本场对本档冲击最大：¥5,999（国补 ¥5,499）的小屏 Pro 直接压到 vivo X500 的价格带，形成"上打下"的跨级竞争。建议以手感、影像调校与 OriginOS 体验做差异化，并密切跟踪其背屏功耗与 2nm 能效的第三方实测。</p></div>
+  </div>
+
+  <div class="section-title">📈 与上代变化（小米 17 Pro → 小米 18 Pro）</div>
+  <div class="chart-grid">
+    <div class="chart-wrap"><h4>起售价（¥）：小米 17 Pro vs 小米 18 Pro（12+256）</h4><canvas id="c_mi_pro" height="170"></canvas></div>
+    <div class="chart-wrap"><h4>电池容量（mAh）：小米 18 Pro 现值</h4><canvas id="c_mi_pro_batt" height="170"></canvas></div>
+  </div>
+  <table class="evi-table">
+    <tr><td>起售价（12+256）</td><td>小米 17 Pro ¥4,999 → 小米 18 Pro ¥5,999（+¥1,000，+20.0%）</td></tr>
+    <tr><td>电池容量</td><td>小米 18 Pro 7000mAh；小米 17 Pro 电池容量未在本次信源中确认，故该图仅呈现本代现值，不做对比</td></tr>
+    <tr><td>说明</td><td>前代价格来源：媒体对小米 17 Pro 的报道（"小米 17 Pro 起步 4999 元"，2025 年 9 月上市）。</td></tr>
+  </table>
+
+  <div class="section-title">🏆 对标 SWOT（vivo X500 Pro 视角）</div>
+  <div class="swot">
+    <div class="swot-cell"><h4>S · 优势</h4><ul>
+      <li>4500nit（20% APL）峰值亮度口径更高</li>
+      <li>IP68 + IP69 双重防护</li>
+      <li>蔡司影像调校与成片口碑成熟</li>
+      <li>OriginOS 7 已先行推送，体验稳定性有先手</li>
+    </ul></div>
+    <div class="swot-cell"><h4>W · 劣势</h4><ul>
+      <li>起售价高 500 元，国补后差距 1,000 元</li>
+      <li>电池少 490mAh；有线/无线快充各落后 10W</li>
+      <li>影像像素与长焦规格差距明显</li>
+      <li>缺少背屏等新形态卖点</li>
+    </ul></div>
+    <div class="swot-cell"><h4>O · 机会</h4><ul>
+      <li>背屏的实际使用频次、功耗与耐用性待验证</li>
+      <li>2nm 平台能效比与散热表现待第三方实测</li>
+      <li>小米 18 标准版延后至 12 月，本档竞品数量有限</li>
+    </ul></div>
+    <div class="swot-cell"><h4>T · 威胁</h4><ul>
+      <li>同尺寸段参数全面领先，直接争夺小屏旗舰用户</li>
+      <li>国补到手 ¥5,499 形成跨级价格压制</li>
+      <li>背屏 + 防窥成为线下门店高感知差异化卖点</li>
+    </ul></div>
+  </div>
+
+  <details>
+    <summary>📋 全量参数展开</summary>
+    <table class="param-table">
+      <tr><td>产品名称</td><td>小米 18 Pro</td></tr>
+      <tr><td>发布</td><td>2026-09-23 19:00（线上同步直播）</td></tr>
+      <tr><td>价格</td><td>12+256 ¥5,999（国补到手 ¥5,499）</td></tr>
+      <tr><td>透明特别版</td><td>16+1TB ¥9,999</td></tr>
+      <tr><td>处理器</td><td>2nm 新一代旗舰平台（骁龙 8E6 口径）</td></tr>
+      <tr><td>屏幕</td><td>RGB OLED 小直屏；超级像素 2K；M11 发光体系；LTPO；BT.2020；0.99mm 四等边；原生硬件防窥</td></tr>
+      <tr><td>后置主摄</td><td>2 亿像素 · 1/1.28"</td></tr>
+      <tr><td>后置超广角</td><td>5000 万像素 · 17mm</td></tr>
+      <tr><td>后置长焦</td><td>2 亿像素 · 1/1.56" · 3.2× 潜望 · 12cm 长焦微距</td></tr>
+      <tr><td>影像合作</td><td>徕卡（双 2 亿）</td></tr>
+      <tr><td>电池</td><td>7000mAh 金沙江电池</td></tr>
+      <tr><td>充电</td><td>100W 有线 + 50W 无线</td></tr>
+      <tr><td>特色硬件</td><td>AI 百变背屏；7514 X 轴马达；3D 超声波指纹</td></tr>
+      <tr><td>防护</td><td>IP66 / IP68 / IP69</td></tr>
+      <tr><td>系统</td><td>澎湃 OS4（首发，内置 MiMo 大模型；支持与苹果设备互联）</td></tr>
+      <tr><td>配色</td><td>星河蓝、冰桃粉、经典黑、经典白</td></tr>
+      <tr><td>峰值亮度 / 分辨率 / 重量</td><td>待确认</td></tr>
+    </table>
+  </details>
+
+  <div class="section-title">📎 来源</div>
+  <div class="src-list">
+    ① 腾讯新闻《小米 18 Pro 系列正式发布：起售价 5999 元起，Pro Max 6999 元…》（2026-09-23）<br>
+    ② 什么值得买《小米 18 Pro 起售 5999 元，直板旗舰首破万元门槛，雷军正式交棒手机线》（2026-09-26）<br>
+    ③ 新浪《雷军台下观礼，小米 18 Pro 系列凭 AI 背屏引爆全场》（2026-09-27）<br>
+    ④ 新浪《小米 18 Pro 系列 5999 元起售，自定义 AI 键可一键开启全局防窥》（2026-10-08）<br>
+    ⑤ 今日头条《小米 17 Pro 起步 4999 元》（前代对照）
+  </div>
+  <div style="margin-top:24px"><button class="tab" style="border:1px solid var(--border);border-radius:10px" onclick="switchTab(2)">下一品：小米 18 Pro Max →</button></div>
+</div>
+
+<!-- ============ TAB 2 小米 18 Pro Max ============ -->
+<div class="pane" id="pane2">
+  <h2 class="product-title">小米 18 Pro Max</h2>
+  <div class="product-img-wrap">
+    <img src="http://doc-fd.zol-img.com.cn/t_s2000x2000/g8/M00/0C/0B/ChMkLWqz29uIZ_xMAACeCnBNHg0AAJx9wDk7LUAAJ4i271.jpg" alt="小米 18 Pro Max（冰桃粉）" />
+    <div class="product-img-placeholder"><div class="icon">🖼️</div><div>产品图待填入</div></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-card">
+      <h3>核心规格</h3>
+      <div class="spec-row"><span class="k">产品定位</span><span class="v">大屏顶配旗舰</span></div>
+      <div class="spec-row"><span class="k">发布 / 开售</span><span class="v">2026-09-23 19:00 发布</span></div>
+      <div class="spec-row"><span class="k">版本与价格</span><span class="v">12+256 ¥6,999 / 12+512 ¥7,999 / 16+512 ¥8,999 / 16+1TB ¥9,999</span></div>
+      <div class="spec-row"><span class="k">透明特别版</span><span class="v">16+1TB ¥10,999</span></div>
+      <div class="spec-row"><span class="k">处理器</span><span class="v">2nm 新一代旗舰平台（骁龙 8EE6 口径）</span></div>
+      <div class="spec-row"><span class="k">屏幕</span><span class="v">RGB OLED 大直屏 · 超级像素 2K · M11 · LTPO · 0.99mm 四等边 · 硬件级防窥</span></div>
+      <div class="spec-row"><span class="k">后置影像</span><span class="v">徕卡双 2 亿：2 亿主摄 1/1.28" + 2 亿 3.2× 潜望长焦 + 5000 万 17mm 超广角（与 Pro 同规格）</span></div>
+      <div class="spec-row"><span class="k">电池 / 充电</span><span class="v">8500mAh 金沙江电池 · 100W 有线 + 50W 无线</span></div>
+      <div class="spec-row"><span class="k">特色 / 防护</span><span class="v">AI 百变背屏 · 0916C X 轴马达 · 3D 超声波指纹 · IP66/IP68/IP69 · 澎湃 OS4</span></div>
+    </div>
+    <div class="hero-card">
+      <h3>综合评分（vivo 视角）</h3>
+      <div class="spec-row"><span class="k">续航竞争力</span><span class="v"><span class="rated"><span class="stars">★★★★★</span><span class="tip">8500mAh 比 vivo X500 Pro Max 的 8000mAh 多 500mAh，且同价位（均为 ¥6,999 起）。</span></span></span></div>
+      <div class="spec-row"><span class="k">价格冲击</span><span class="v"><span class="rated"><span class="stars">★★★★☆</span><span class="tip">与 vivo X500 Pro Max 同为 ¥6,999 起，同价对位、参数更密。</span></span></span></div>
+      <div class="spec-row"><span class="k">影像竞争力</span><span class="v"><span class="rated tip-left"><span class="stars">★★★★★</span><span class="tip">双 2 亿 + 3.2× 潜望 + 12cm 长焦微距，纸面规格高于 vivo 的 5000 万级主摄方案。</span></span></span></div>
+      <div class="spec-row"><span class="k">可验证性</span><span class="v"><span class="rated tip-left"><span class="stars">★★★☆☆</span><span class="tip">机身重量/厚度、屏幕分辨率数值、峰值亮度等未明确，需第三方实测。</span></span></span></div>
+    </div>
+  </div>
+
+  <div class="section-title">🚀 Top 5 升级 / 亮点</div>
+  <div class="top5">
+    <div class="t5"><div class="n">1</div><div><div class="b">8500mAh 金沙江电池</div><div class="d">同价位最大电池之一，较上代 小米 17 Pro Max 的 7500mAh 增加 1,000mAh。</div></div></div>
+    <div class="t5"><div class="n">2</div><div><div class="b">徕卡双 2 亿 + 3.2× 潜望</div><div class="d">2 亿主摄（1/1.28"）+ 2 亿潜望长焦（1/1.56"，12cm 长焦微距），支持全场景高像素裁切。</div></div></div>
+    <div class="t5"><div class="n">3</div><div><div class="b">大直屏 + 0.99mm 四等边</div><div class="d">大尺寸 RGB OLED 2K LTPO 直屏，兼顾观感与游戏触控。</div></div></div>
+    <div class="t5"><div class="n">4</div><div><div class="b">透明特别版首破万元</div><div class="d">16+1TB ¥10,999，为小米直板旗舰首次站上万元档。</div></div></div>
+    <div class="t5"><div class="n">5</div><div><div class="b">AI 百变背屏 + 澎湃 OS4</div><div class="d">背屏与硬件级防窥全系标配；首发澎湃 OS4 与 MiMo 大模型。</div></div></div>
+  </div>
+
+  <div class="section-title">📊 参数 Diff — 本品 vivo X500 Pro Max（2026，¥6,999 起） vs 对标 小米 18 Pro Max（2026，¥6,999 起）</div>
+  <table class="diff-table">
+    <thead><tr><th>维度</th><th>本品 vivo X500 Pro Max</th><th>对标 小米 18 Pro Max</th><th>差异判断（vivo 视角）</th></tr></thead>
+    <tbody>
+      <tr><td>起售价</td><td>¥6,999（12+256）</td><td>¥6,999（12+256）</td><td><span class="delta flat">＝ 同价对位，正面竞争</span></td></tr>
+      <tr><td>处理器</td><td>蓝晶 × 天玑 9600 Pro（2nm）</td><td>2nm 新一代旗舰平台（骁龙 8EE6 口径）</td><td><span class="delta flat">＝ 同为 2nm 旗舰平台</span></td></tr>
+      <tr><td>电池</td><td>8000mAh 蓝海电池</td><td>8500mAh 金沙江电池</td><td><span class="delta down">▼ 少 500mAh</span></td></tr>
+      <tr><td>有线快充</td><td>90W</td><td>100W</td><td><span class="delta down">▼ 落后 10W</span></td></tr>
+      <tr><td>无线快充</td><td>40W</td><td>50W</td><td><span class="delta down">▼ 落后 10W</span></td></tr>
+      <tr><td>主摄</td><td>蔡司超动态主摄 · 蓝图光御 900 · 5000 万 · 1/1.28" · f/1.57 · CIPA 7.0</td><td>2 亿 · 1/1.28"</td><td><span class="delta down">▼ 像素差距明显（传感器尺寸持平，光圈/防抖口径更优）</span></td></tr>
+      <tr><td>长焦</td><td>待确认</td><td>2 亿 · 3.2× 潜望 · 1/1.56" · 12cm 长焦微距</td><td><span class="delta down">▼ 对方长焦规格明确且高</span></td></tr>
+      <tr><td>屏幕</td><td>（大屏旗舰规格）</td><td>RGB OLED 大直屏 · 超级像素 2K · LTPO · 0.99mm 四等边</td><td><span class="delta flat">＝ 同为 2K 级直屏路线</span></td></tr>
+      <tr><td>形态特色</td><td>无背屏</td><td>AI 百变背屏 + 硬件级防窥</td><td><span class="delta down">▼ 缺少新形态卖点</span></td></tr>
+      <tr><td>防护</td><td>IP68 + IP69</td><td>IP66 / IP68 / IP69</td><td><span class="delta flat">＝ 防护档位相当</span></td></tr>
+      <tr><td>系统</td><td>OriginOS 7</td><td>澎湃 OS4</td><td><span class="delta flat">＝ 各有生态</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">🧠 AI 自动总结（本品：vivo X500 Pro Max）</div>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="label">📣 最大卖点</div><p>vivo X500 Pro Max 的蔡司超动态主摄（蓝图光御 900 · 1/1.28" · CIPA 7.0）与 90W 有线快充是核心底气——大底大光圈 + 高防抖 + 更快有线充电。</p></div>
+    <div class="ai-card"><div class="label">⚠️ 最大短板</div><p>同为 ¥6,999 起，但电池少 500mAh、有线/无线快充各落后 10W、长焦规格与背屏形态双双缺失——同价下参数表被全面压制，是本档最大压力点。</p></div>
+    <div class="ai-card"><div class="label">🎯 最适合人群</div><p>看重主摄成片质感与有线充电效率的用户仍适合 vivo X500 Pro Max；追求长焦规格、续航数字与背屏玩法的用户会明显流向 小米 18 Pro Max。</p></div>
+    <div class="ai-card"><div class="label">🔮 市场判断</div><p>同价对位的正面截击，威胁等级最高。建议短期以"大底 + CIPA 7.0 稳"与影像调校话术应对，并紧盯其 8500mAh 机身的重量厚度与背屏功耗实测——这正是可反击的体验缺口。</p></div>
+  </div>
+
+  <div class="section-title">📈 与上代变化（小米 17 Pro Max → 小米 18 Pro Max）</div>
+  <div class="chart-grid">
+    <div class="chart-wrap"><h4>电池容量（mAh）：小米 17 Pro Max vs 小米 18 Pro Max</h4><canvas id="c_mipm_batt" height="170"></canvas></div>
+    <div class="chart-wrap"><h4>起售价（¥）：小米 18 Pro Max 现行价格带</h4><canvas id="c_mipm_price" height="170"></canvas></div>
+  </div>
+  <table class="evi-table">
+    <tr><td>电池容量</td><td>小米 17 Pro Max 7500mAh → 小米 18 Pro Max 8500mAh（+1,000mAh，+13.3%）</td></tr>
+    <tr><td>起售价</td><td>小米 18 Pro Max ¥6,999 起（12+256）；前代起售价未在本次信源中确认，故上图仅呈现本代价格带，不编造前代数值</td></tr>
+    <tr><td>屏幕</td><td>前代为 6.9 英寸规格（媒体口径，2026-10-06 报道）</td></tr>
+  </table>
+
+  <div class="section-title">🏆 对标 SWOT（vivo X500 Pro Max 视角）</div>
+  <div class="swot">
+    <div class="swot-cell"><h4>S · 优势</h4><ul>
+      <li>主摄光圈 f/1.57 与 CIPA 7.0 防抖口径更优</li>
+      <li>90W 有线快充领先 100W 之外的实际温控与稳定性可讲</li>
+      <li>蔡司影像调校与成片口碑成熟</li>
+      <li>OriginOS 7 已先行推送，系统体验有先手</li>
+    </ul></div>
+    <div class="swot-cell"><h4>W · 劣势</h4><ul>
+      <li>电池 8000mAh 少 500mAh</li>
+      <li>有线 90W / 无线 40W 均落后 10W</li>
+      <li>长焦规格差距明显，缺少 3.2× 潜望与长焦微距</li>
+      <li>缺少背屏等新形态卖点</li>
+    </ul></div>
+    <div class="swot-cell"><h4>O · 机会</h4><ul>
+      <li>8500mAh 大电池带来的机身重量/厚度代价可作对比抓手</li>
+      <li>2 亿像素直出与算法负载的实际体验待实测</li>
+      <li>背屏功耗与耐用性尚无长期验证数据</li>
+    </ul></div>
+    <div class="swot-cell"><h4>T · 威胁</h4><ul>
+      <li>同价（¥6,999）但参数更密，直接争夺大屏旗舰份额</li>
+      <li>透明特别版 ¥10,999 拉高品牌势能</li>
+      <li>徕卡双 2 亿成为线下最直观的销售话术</li>
+    </ul></div>
+  </div>
+
+  <details>
+    <summary>📋 全量参数展开</summary>
+    <table class="param-table">
+      <tr><td>产品名称</td><td>小米 18 Pro Max</td></tr>
+      <tr><td>发布</td><td>2026-09-23 19:00</td></tr>
+      <tr><td>价格</td><td>12+256 ¥6,999；12+512 ¥7,999；16+512 ¥8,999；16+1TB ¥9,999；透明特别版 16+1TB ¥10,999</td></tr>
+      <tr><td>处理器</td><td>2nm 新一代旗舰平台（骁龙 8EE6 口径）</td></tr>
+      <tr><td>屏幕</td><td>RGB OLED 大直屏；超级像素 2K；M11 发光体系；LTPO；0.99mm 四等边；硬件级防窥</td></tr>
+      <tr><td>后置主摄</td><td>2 亿像素 · 1/1.28"</td></tr>
+      <tr><td>后置超广角</td><td>5000 万像素 · 17mm</td></tr>
+      <tr><td>后置长焦</td><td>2 亿像素 · 1/1.56" · 3.2× 潜望 · 12cm 长焦微距</td></tr>
+      <tr><td>影像合作</td><td>徕卡（双 2 亿）</td></tr>
+      <tr><td>电池</td><td>8500mAh 金沙江电池</td></tr>
+      <tr><td>充电</td><td>100W 有线 + 50W 无线</td></tr>
+      <tr><td>特色硬件</td><td>AI 百变背屏；0916C X 轴马达；3D 超声波指纹</td></tr>
+      <tr><td>防护</td><td>IP66 / IP68 / IP69</td></tr>
+      <tr><td>系统</td><td>澎湃 OS4（首发）</td></tr>
+      <tr><td>配色</td><td>星河蓝、冰桃粉、经典黑、经典白</td></tr>
+      <tr><td>屏幕尺寸 / 分辨率数值 / 重量</td><td>待确认</td></tr>
+    </table>
+  </details>
+
+  <div class="section-title">📎 来源</div>
+  <div class="src-list">
+    ① 腾讯新闻《小米 18 Pro 系列正式发布：起售价 5999 元起，Pro Max 6999 元…》（2026-09-23）<br>
+    ② 什么值得买《小米 18 Pro 起售 5999 元，直板旗舰首破万元门槛…》（2026-09-26）<br>
+    ③ 新浪《2026 大屏手机推荐：小米 17 Pro Max 实测 6.9 英寸 + 7500mAh》（2026-10-06，前代对照）<br>
+    ④ 新浪《小米 18 Pro Max 值得买吗？双屏 + AI + 性能三大维度说清》（2026-10-09）
+  </div>
+  <div style="margin-top:24px"><button class="tab" style="border:1px solid var(--border);border-radius:10px" onclick="switchTab(1)">← 上一品：小米 18 Pro</button></div>
+</div>
+
+<!-- ============ TAB 3 全系横向对比 ============ -->
+<div class="pane" id="pane3">
+  <h2 class="product-title">小米 18 Pro 全系横向对比（小米 18 Pro / 小米 18 Pro Max）</h2>
+
+  <div class="section-title">📊 全参数横向对比</div>
+  <table class="diff-table">
+    <thead><tr><th>维度</th><th>小米 18 Pro</th><th>小米 18 Pro Max</th></tr></thead>
+    <tbody>
+      <tr><td>产品定位</td><td>小尺寸全能旗舰</td><td>大屏顶配旗舰</td></tr>
+      <tr><td>起售价</td><td>¥5,999（12+256，国补到手 ¥5,499）</td><td>¥6,999（12+256）</td></tr>
+      <tr><td>各版本价格</td><td>12+256 ¥5,999</td><td>12+256 ¥6,999 / 12+512 ¥7,999 / 16+512 ¥8,999 / 16+1TB ¥9,999</td></tr>
+      <tr><td>透明特别版</td><td>16+1TB ¥9,999</td><td>16+1TB ¥10,999</td></tr>
+      <tr><td>屏幕</td><td>RGB OLED <b>小直屏</b> · 超级像素 2K · M11 发光体系 · LTPO</td><td>RGB OLED <b>大直屏</b> · 超级像素 2K · M11 发光体系 · LTPO</td></tr>
+      <tr><td>屏幕共通规格</td><td colspan="2">BT.2020 色域 · 0.99mm 四等边 · 原生硬件防窥（两款共通）</td></tr>
+      <tr><td>处理器</td><td>2nm 新一代旗舰平台（骁龙 8E6 口径）</td><td>2nm 新一代旗舰平台（骁龙 8EE6 口径）</td></tr>
+      <tr><td>后置影像</td><td colspan="2">徕卡双 2 亿：2 亿主摄 1/1.28" + 2 亿 3.2× 潜望长焦（1/1.56" · 12cm 长焦微距）+ 5000 万 17mm 超广角（两款同规格）</td></tr>
+      <tr><td>电池</td><td>7000mAh 金沙江电池</td><td>8500mAh 金沙江电池</td></tr>
+      <tr><td>充电</td><td colspan="2">100W 有线 + 50W 无线（两款共通）</td></tr>
+      <tr><td>特色硬件</td><td>AI 百变背屏 · 7514 X 轴马达 · 3D 超声波指纹</td><td>AI 百变背屏 · 0916C X 轴马达 · 3D 超声波指纹</td></tr>
+      <tr><td>防护</td><td colspan="2">IP66 / IP68 / IP69（两款共通）</td></tr>
+      <tr><td>系统</td><td colspan="2">澎湃 OS4（首发，内置 MiMo 大模型；支持与苹果设备互联）（两款共通）</td></tr>
+      <tr><td>配色</td><td colspan="2">星河蓝、冰桃粉、经典黑、经典白（两款共通）</td></tr>
+      <tr><td>vivo 对标关系</td><td>本品 vivo X500 Pro（¥6,499）</td><td>本品 vivo X500 Pro Max（¥6,999）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">🎯 一句话选购定位</div>
+  <div class="ai-grid">
+    <div class="ai-card"><div class="label">⚖️ 均衡 & 手感 → 小米 18 Pro</div><p>¥5,999 起（国补 ¥5,499）。小尺寸机身仍给到 7000mAh、双 2 亿与 100W/50W，影像规格与 Pro Max 完全一致，是全系"每元买到的规格"最高的一档。</p></div>
+    <div class="ai-card"><div class="label">🔋 续航 & 大屏 → 小米 18 Pro Max</div><p>¥6,999 起，比 Pro 贵 1,000 元。主要升级为 8500mAh（+1,500mAh）、更大尺寸直屏与 0916C 马达；影像与充电规格与 Pro 相同。</p></div>
+    <div class="ai-card"><div class="label">✨ 收藏/展示向 → 透明特别版</div><p>Pro 16+1TB ¥9,999、Pro Max 16+1TB ¥10,999，直板旗舰首次进入万元档；媒体称首批备货有限、部分渠道已售罄。</p></div>
+    <div class="ai-card"><div class="label">⚠️ 两款共同的待确认项</div><p>屏幕具体分辨率数值、峰值亮度、机身重量与厚度、屏幕尺寸精确值均未公布；Pro 与 Pro Max 的处理器型号口径在不同信源中写作 8E6 / 8EE6，需以官方规格页为准。</p></div>
+  </div>
+
+  <div class="section-title">📈 两档差价一览</div>
+  <table class="evi-table">
+    <tr><td>Pro → Pro Max（起售价）</td><td>¥5,999 → ¥6,999，差价 ¥1,000（+16.7%）；主要换来 8500mAh 电池（+1,500mAh）、更大直屏与 0916C 马达</td></tr>
+    <tr><td>Pro → Pro Max（透明特别版）</td><td>¥9,999 → ¥10,999，差价 ¥1,000</td></tr>
+    <tr><td>前代对照</td><td>小米 17 Pro ¥4,999 起 → 小米 18 Pro ¥5,999 起（+¥1,000，+20.0%）；小米 18 Pro Max 前代起售价未确认</td></tr>
+  </table>
+
+  <div class="section-title">📎 来源</div>
+  <div class="src-list">同各单品页来源（腾讯新闻 / 什么值得买 / 新浪 / 今日头条，2026-09-23 ~ 10-09）</div>
+  <div style="margin-top:24px"><button class="tab" style="border:1px solid var(--border);border-radius:10px" onclick="switchTab(0)">← 返回总览</button> <button class="tab" style="border:1px solid var(--border);border-radius:10px" onclick="switchTab(2)">← 小米 18 Pro Max</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+function switchTab(n){
+  document.querySelectorAll(".tab[data-tab]").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".pane").forEach(p=>p.classList.remove("active"));
+  document.querySelector('[data-tab="'+n+'"]').classList.add("active");
+  document.getElementById("pane"+n).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".tab[data-tab]").forEach(b=>b.addEventListener("click",()=>switchTab(+b.dataset.tab)));
+var chartsDone={};
+function bar(id,labels,data,colors,unit){
+  var el=document.getElementById(id); if(!el||typeof Chart==="undefined"||chartsDone[id]) return; chartsDone[id]=true;
+  new Chart(el,{type:"bar",data:{labels:labels,datasets:[{data:data,backgroundColor:colors,borderRadius:6,maxBarThickness:70}]},
+    options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.parsed.y+unit;}}}},scales:{y:{beginAtZero:true}}}});
+}
+function initCharts(){
+  bar("c_mi_pro",["小米 17 Pro（2025）","小米 18 Pro（2026）"],[4999,5999],["#b9b9c0","#e8590c"]," 元");
+  bar("c_mi_pro_batt",["小米 18 Pro（2026）"],[7000],["#e8590c"]," mAh");
+  bar("c_mipm_batt",["小米 17 Pro Max（2025）","小米 18 Pro Max（2026）"],[7500,8500],["#b9b9c0","#e8590c"]," mAh");
+  bar("c_mipm_price",["12+256","12+512","16+512","16+1TB"],[6999,7999,8999,9999],["#e8590c","#e8590c","#e8590c","#e8590c"]," 元");
+}
+document.addEventListener("DOMContentLoaded",function(){
+  if(document.getElementById("pane1").classList.contains("active")) initCharts();
+  document.querySelector('[data-tab="1"]').addEventListener("click",function(){setTimeout(initCharts,60)});
+});
+</script>
+</body>
+</html>
